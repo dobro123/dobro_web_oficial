@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ruleta Dobromir</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="ruleta.css">
+	<script src="ruleta.js"></script>
+</head>
+<body>
+
+	<form id="formulario">
+		<label>Nombre</label>
+		<input id="nombre_usuario" type="text" name="nombre" placeholder="Lucia">
+		<button type="button" onclick="comenzar()">Continuar</button>
+	</form>
+	
+
+	<div id="mesa">
+		<img src="ruleta.png" width="300px" height="300px" id="ruleta_juego">
+
+		<span id="numero_ruleta">
+			0
+		</span>
+
+		<div id="numeros_apostar">
+			<div class="filas fila1">
+				<div onclick="apostar(3)" class="n_f_3 rojo opcion" id="d_3">3</div>
+				<div onclick="apostar(6)" class="n_f_3 negro opcion" id="d_6">6</div>
+				<div onclick="apostar(9)" class="n_f_3 rojo opcion" id="d_9">9</div>
+				<div onclick="apostar(12)" class="n_f_3 rojo opcion" id="d_12">12</div>
+				<div onclick="apostar(15)" class="n_f_3 negro opcion" id="d_15">15</div>
+				<div onclick="apostar(18)" class="n_f_3 rojo opcion" id="d_18">18</div>
+				<div onclick="apostar(21)" class="n_f_3 rojo opcion" id="d_21">21</div>
+				<div onclick="apostar(24)" class="n_f_3 negro opcion" id="d_24">24</div>
+				<div onclick="apostar(27)" class="n_f_3 rojo opcion" id="d_27">27</div>
+				<div onclick="apostar(30)" class="n_f_3 rojo opcion" id="d_30">30</div>
+				<div onclick="apostar(33)" class="n_f_3 negro opcion" id="d_33">33</div>
+				<div onclick="apostar(36)" class="n_f_3 rojo opcion" id="d_36">36</div>
+			</div>
+
+			<div class="filas fila2">
+				<div onclick="apostar(2)" class="n_f_2 negro opcion" id="d_2">2</div>
+				<div onclick="apostar(5)" class="n_f_2 rojo opcion" id="d_5">5</div>
+				<div onclick="apostar(8)" class="n_f_2 negro opcion" id="d_8">8</div>
+				<div onclick="apostar(11)" class="n_f_2 negro opcion" id="d_11">11</div>
+				<div onclick="apostar(14)" class="n_f_2 rojo opcion" id="d_14">14</div>
+				<div onclick="apostar(17)" class="n_f_2 negro opcion" id="d_17">17</div>
+				<div onclick="apostar(20)" class="n_f_2 negro opcion" id="d_20">20</div>
+				<div onclick="apostar(23)" class="n_f_2 rojo opcion" id="d_23">23</div>
+				<div onclick="apostar(26)" class="n_f_2 negro opcion" id="d_26">26</div>
+				<div onclick="apostar(29)" class="n_f_2 negro opcion" id="d_29">29</div>
+				<div onclick="apostar(32)" class="n_f_2 rojo opcion" id="d_32">32</div>
+				<div onclick="apostar(35)" class="n_f_2 negro opcion" id="d_35">35</div>
+			</div>
+
+			<div class="filas fila3" id="fila4">
+				<div onclick="apostar(1)" class="n_f_1 rojo opcion" id="d_1">1</div>
+				<div onclick="apostar(4)" class="n_f_1 negro opcion" id="d_4">4</div>
+				<div onclick="apostar(7)" class="n_f_1 rojo opcion" id="d_7">7</div>
+				<div onclick="apostar(10)" class="n_f_1 rojo opcion" id="d_10">10</div>
+				<div onclick="apostar(13)" class="n_f_1 negro opcion" id="d_13">13</div>
+				<div onclick="apostar(16)" class="n_f_1 rojo opcion" id="d_16">16</div>
+				<div onclick="apostar(19)" class="n_f_1 rojo opcion" id="d_19">19</div>
+				<div onclick="apostar(22)" class="n_f_1 negro opcion" id="d_22">22</div>
+				<div onclick="apostar(25)" class="n_f_1 rojo opcion" id="d_25">25</div>
+				<div onclick="apostar(28)" class="n_f_1 rojo opcion" id="d_28">28</div>
+				<div onclick="apostar(31)" class="n_f_1 negro opcion" id="d_31">31</div>
+				<div onclick="apostar(34)" class="n_f_1 rojo opcion" id="d_34">34</div>
+			</div>
+		</div>
+
+		<div class="apuestas_columna filas">
+			<div onclick="apostar_col(1)" id="col-1">1 al 12</div>
+			<div onclick="apostar_col(2)" id="col-2">12 al 24</div>
+			<div onclick="apostar_col(3)" id="col-3">24 al 36</div>
+		</div>
+
+		<div class="apuestas_fila">
+			<div onclick="apostar_fila(1)" id="fila-1">Fila 1</div>
+			<div onclick="apostar_fila(2)" id="fila-2">Fila 2</div>
+			<div onclick="apostar_fila(3)" id="fila-3">Fila 3</div>
+		</div>
+
+		<div class="apuestas_columna filas" id="ap2">
+			<div onclick="parinpar(2)" id="p_2">Pares</div>
+			<div>
+				<article onclick="colores(1)" class="rojos" id="c_1">Rojo
+				</article>
+				<article onclick="colores(2)" class="negros" id="c_2">Negro
+				</article>
+			</div>
+			<div onclick="parinpar(1)" id="p_1">Inpares</div>
+		</div>
+
+		<div onclick="apostar(0)" id="d_0" class="opcion">0</div>
+
+		<div id="conjunto_fichas" class="filas">
+			<div class="fichas" id="f-10" onclick="select_cantidad(10)">
+				<span>10</span>
+			</div>
+			<div class="fichas" id="f-20" onclick="select_cantidad(20)">
+				<span>20</span>
+			</div>
+			<div class="fichas" id="f-50" onclick="select_cantidad(50)">
+				<span>50</span>
+			</div>
+			<div class="fichas" id="f-100" onclick="select_cantidad(100)">
+				<span>100</span>
+			</div>
+		</div>
+
+		<div id="cuenta">
+			<div id="persona">Dobro</div>
+			<div id="info">Saldo en la cuenta: <span id="saldo_disponible">500</span></div>
+			<div id="apostando">Dinero apostado: <span id="en_juego">0</span></div>
+		</div>
+		<button id="jugar" type="button" onclick="jugar()" >JUGAR</button>
+	</div>
+
+	<hr>
+
+	<div id="estadisticas">
+		<h3> Últimos resultados </h3>
+		<h4> números </h4>
+		<span id="num_10"> </span>
+
+		<h4> colores </h4>
+		<span id="colores_10"></span>
+
+		<h4> Par o Impar</h4>
+		<span id="par_10"></span>
+	</div>
+
+	<div id="jugador">
+		<h2>Apuesta numero: <span id="id_apuesta"></span></h2>
+		<h4>Cantidad apostada: <span id="id_cantidad"></span></h4>
+		<h4>Ganancia: <span id="id_ganancia"></span></h4>
+		<h4>beneficio: <span id="id_beneficios"></span></h4>
+	</div>
+		
+
+</body>
+</html>

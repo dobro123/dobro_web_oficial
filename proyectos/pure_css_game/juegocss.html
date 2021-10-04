@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Juego CSS</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="juego.css">
+</head>
+<body>
+	<input type="checkbox" name="start" id="comenzar">
+	<section class="instrucciones">
+		<input type="checkbox" name="confirmar_nombre">
+		<h1>Hola bienvenido a mi juego hecho únicamente con CSS</h1>
+		<h1>Indicame cual es tu nombre?</h1>
+		<label for="comenzar" class="button"></label>
+		<input type="text" name="nombre" placeholder="OreoNocilla" placeholder="[a-zA-Z]{3, }">
+
+		<p>Como jugar? Muy simple Hay tres naves, Tienes que derribar las no humanas<span class="nave"></span>. Si las naves van muy rápido tienen mucha probalidad de esquivar tu tiro. haz click cuando desaceleren.</p>
+		<p>Las naves alienigenas te dan: 10 puntos</p>
+		<p>Las naves terrestres te quitan: 25 puntos</p>
+		<p>Las naves especiales te dan: 20 puntos y un combo</p>
+	</section>
+
+	<div id="contenedor_juego">
+		<div id="animacion_contador"></div>
+
+		<input type="checkbox" name="objetivo" id="objetivo1">
+		<label for="objetivo1"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo2">
+		<label for="objetivo2"></label>
+
+		<input type="checkbox" name="objetivo_terrestre" id="ter1">
+		<label for="ter1"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo3">
+		<label for="objetivo3"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo4">
+		<label for="objetivo4"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo5">
+		<label for="objetivo5"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo6">
+		<label for="objetivo6"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo7">
+		<label for="objetivo7"></label>
+
+		<hr>
+
+		<input type="checkbox" name="objetivo" id="objetivo8">
+		<label for="objetivo8"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo9">
+		<label for="objetivo9"></label>
+
+		<input type="checkbox" name="objetivo_terrestre" id="ter2">
+		<label for="ter2"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo10">
+		<label for="objetivo10"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo11">
+		<label for="objetivo11"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo12">
+		<label for="objetivo12"></label>
+
+		<input type="checkbox" name="objetivo_terrestre" id="ter3">
+		<label for="ter3"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo13">
+		<label for="objetivo13"></label>
+
+		<hr class="hr2">
+
+		<input type="checkbox" name="objetivo" id="objetivo14">
+		<label for="objetivo14"></label>
+
+		<input type="checkbox" name="objetivo_terrestre" id="ter4">
+		<label for="ter4"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo15">
+		<label for="objetivo15"></label>
+
+		<input type="checkbox" name="objetivo_terrestre" id="ter5">
+		<label for="ter5"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo16">
+		<label for="objetivo16"></label>
+
+		<input type="checkbox" name="objetivo_terrestre" id="ter6">
+		<label for="ter6"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo17">
+		<label for="objetivo17"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo18">
+		<label for="objetivo18"></label>
+
+		<hr class="hr3">
+
+		<input type="checkbox" name="objetivo" id="objetivo19">
+		<label for="objetivo19"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo20">
+		<label for="objetivo20"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo21">
+		<label for="objetivo21"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo22">
+		<label for="objetivo22"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo23">
+		<label for="objetivo23"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo24">
+		<label for="objetivo24"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo25">
+		<label for="objetivo25"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo26">
+		<label for="objetivo26"></label>
+
+		<hr class="hr4">
+
+		<input type="radio" name="poder_especial" id="poder1">
+		<input type="radio" name="poder_especial" id="poder2">
+		<input type="radio" name="poder_especial" id="poder3">
+		
+		<input type="checkbox" name="objetivo_especial" id="objetivo_e1">
+		<label for="objetivo_e1"></label>
+		
+		<input type="checkbox" name="siguiente_fase" id="next">
+		<label for="next">Continuar</label>
+
+		<input type="checkbox" name="objetivo" id="objetivo27">
+		<label for="objetivo27"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo28">
+		<label for="objetivo28"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo29">
+		<label for="objetivo29"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo30">
+		<label for="objetivo30"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo31">
+		<label for="objetivo31"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo32">
+		<label for="objetivo32"></label>
+
+		<input type="checkbox" name="objetivo" id="objetivo33">
+		<label for="objetivo33"></label>
+
+		<div id="eleccion_bonus">
+			<label for="poder1">Las naves se meven 20% más despacio</label>
+			<label for="poder2">Las naves se vuelven 20% mas grandes</label>
+			<label for="poder3">Doble de puntos de aqui en adelante</label>
+		</div>
+
+		<hr class="hr5">
+
+		<input type="checkbox" name="objetivo" id="objetivo34">
+		<label for="objetivo34"></label>
+		<input type="checkbox" name="objetivo" id="objetivo35">
+		<label for="objetivo35"></label>
+		<input type="checkbox" name="objetivo" id="objetivo36">
+		<label for="objetivo36"></label>
+		<input type="checkbox" name="objetivo" id="objetivo37">
+		<label for="objetivo37"></label>
+		<input type="checkbox" name="objetivo" id="objetivo38">
+		<label for="objetivo38"></label>
+		<input type="checkbox" name="objetivo" id="objetivo39">
+		<label for="objetivo39"></label>
+		<input type="checkbox" name="objetivo" id="objetivo40">
+		<label for="objetivo40"></label>
+		<input type="checkbox" name="objetivo" id="objetivo41">
+		<label for="objetivo41"></label>
+
+		<hr class="hr6">
+
+		<input type="checkbox" name="objetivo" id="objetivo42">
+		<label for="objetivo42"></label>
+		<input type="checkbox" name="objetivo" id="objetivo43">
+		<label for="objetivo43"></label>
+		<input type="checkbox" name="objetivo" id="objetivo44">
+		<label for="objetivo44"></label>
+		<input type="checkbox" name="objetivo" id="objetivo45">
+		<label for="objetivo45"></label>
+		<input type="checkbox" name="objetivo" id="objetivo46">
+		<label for="objetivo46"></label>
+		<input type="checkbox" name="objetivo" id="objetivo47">
+		<label for="objetivo47"></label>
+		<input type="checkbox" name="objetivo" id="objetivo48">
+		<label for="objetivo48"></label>
+		<input type="checkbox" name="objetivo" id="objetivo49">
+		<label for="objetivo49"></label>
+
+
+		<article id="estadisticas">
+			<p>Jugardor: </p>
+			<br>
+			<p id="puntuacion">Puntuacion: </p>
+		</article>
+
+		<div id="fin-juego">
+			progreso...
+		</div>
+	</div>
+
+</body>
+</html>

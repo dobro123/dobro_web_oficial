@@ -1,0 +1,805 @@
+:root {
+	--tiempo_carga: 3s;
+	--duracion_primera_oleada: 12s;
+	--delay_segunda_oleada: calc(var(--duracion_primera_oleada) + var(--tiempo_carga));
+	--delay_tercera_oleada: calc(var(--delay_segunda_oleada) + var(--duracion_primera_oleada));
+	--delay_cuarta_oleada: calc(var(--delay_tercera_oleada) + var(--duracion_primera_oleada));
+	--delay_quinta_oleada: calc(var(--delay_cuarta_oleada) + var(--duracion_primera_oleada));
+	--delay_sexta_oleada: calc(var(--delay_quinta_oleada) + var(--duracion_primera_oleada));
+	--delay_septima_oleada: calc(var(--delay_septima_oleada) + var(--duracion_primera_oleada));
+	/* para el bono de las naves van mas lento */
+	--20porciento_duracion: calc( var(--duracion_primera_oleada) / 10 * 2);
+	--duracion_oleada_bono: calc(var(--duracion_primera_oleada) + var(--20porciento_duracion));
+	--duracion_partida: calc( (var(--duracion_primera_oleada) * 7 ) );
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+#contenedor_juego > input[type="radio"], input[name="siguiente_fase"], input[name="objetivo_especial"], label[for="next"] {
+	display: none;
+}
+#contenedor_juego {
+	transform: scale(1);
+}
+body {
+	user-select: none;
+	-moz-user-select: none;
+	background: #260108;
+	color: white;
+	display: grid;
+	place-items: center;
+	font-size: 1.5rem;
+	padding-bottom: 100px;
+	counter-reset: divinos;
+	overflow: hidden;
+}
+#contenedor_juego:after, #contenedor_juego:before {
+	content: '';
+	width: 200px;
+	height: 100%;
+	background: black;
+	position: absolute;
+	top: 0;
+	z-index: 99;
+}
+#contenedor_juego:after {
+	left: -200px;
+}
+#contenedor_juego:before {
+	right: -200px;
+}
+label:hover {
+	cursor: crosshair;
+}
+#estadisticas {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: space-around;
+	align-items: flex-start;
+	width: 1200px;
+	height: 150px;
+	padding-left: 24px;
+	background: #F28379;
+	position: absolute;
+	left: 0;
+	top: calc(100% + 24px);
+}
+/* Lo primero desplegar el nombre */
+section.instrucciones {
+	background: #63BBF2;
+	border: 2px solid #F28379;
+	position: relative;
+	padding: 8px;
+	padding-bottom: 50px;
+	width: 1200px;
+}
+h1, h2 {
+	text-align: center;
+}
+section.instrucciones > p {
+	display: none;
+	max-width: 720px;
+	margin: 12px auto;
+	text-align: justify;
+	font-size: 1.75rem;
+	line-height: 2rem;
+}
+input[name="nombre"] {
+	border: 1px solid black;
+	padding: 6px 12px;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 50px;
+}
+label.button, input[name="confirmar_nombre"] {
+	display: grid;
+	place-items: center;
+	width: 150px;
+	height: 40px;
+	background: #F29C94;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 8px;
+}
+label.button {
+	cursor: pointer!important;
+}
+label.button:after {
+	content: 'Siguiente ➡️';
+	cursor: pointer;
+}
+input[name="confirmar_nombre"] {
+	z-index: 5;
+	opacity: 0;
+	cursor: pointer;
+}
+input[name="start"] {
+	z-index: 0;
+	opacity: 0;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+/* al confirmar nombre pasa a siguiente fase */
+input[name="confirmar_nombre"]:checked {
+	display: none;
+	z-index: 4;
+}
+input[name="confirmar_nombre"]:checked ~ h1 {
+	display: none;
+}
+input[name="confirmar_nombre"]:checked ~ p {
+	display: block;
+}
+input[name="confirmar_nombre"]:checked ~ label.button:after {
+	content: 'Comenzar';
+}
+/* Posicionar nombre, le damos estilo para que el input no parezca como tal y quitamos los eventos de raton con css*/
+input[name="confirmar_nombre"]:checked ~ input[name="nombre"] {
+	pointer-events: none;
+	border: none;
+	outline: none;
+	background: none;
+	color: white;
+	font-size: 2rem;
+	text-transform: capitalize;
+	position: absolute;
+	top: 675px;
+	left: 16%;
+	z-index: 6;
+	display: none;
+}
+input[name="start"]:checked {
+	display: none;
+}
+input[name="start"]:checked ~ #contenedor_juego {
+	display: block;
+}
+input[name="start"]:checked ~ .instrucciones {
+	height: 0;
+	padding: 0;
+	border: none;
+}
+input[name="start"]:checked ~ .instrucciones *:not(input[name="nombre"]) {
+	display: none;
+}
+input[name="start"]:checked ~ .instrucciones > input[name="nombre"] {
+	display: block;
+}
+input[name="start"]:checked ~ #contenedor_juego #fin-juego{
+	display: block;
+}
+input[name="start"]:checked ~ #contenedor_juego #fin-juego:after{
+	animation: progreso var(--duracion_partida) 3s linear 1 forwards;
+}
+/* estilo de cosas sueltas */
+span.nave {
+	display: inline-block;
+	width: 30px;
+	height: 24px;
+	margin: 0 4px;
+	background: url('ovni.png');
+	background-size: 100%;
+}
+/* Contadores */
+input[name="objetivo"]:checked {
+	counter-increment: divinos 10;
+}
+input[name="objetivo_terrestre"]:checked {
+	counter-increment: divinos -25;
+}
+p#puntuacion:after {
+	content: counter(divinos);
+}
+/* el juego */
+/* El contenedor del juego */
+#contenedor_juego {
+	width: 1200px;
+	height: 600px;
+	background: white;
+	margin-top: 50px;
+	position: relative;
+	display: none;
+}
+/* El contador */
+#animacion_contador {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #f29c94;
+}
+#animacion_contador:after {
+	content: '';
+	position: relative;
+	top: 0;
+	left: 0;
+	display: grid;
+	place-items: center;
+	font-size: 15rem;
+	width: 100%;
+	height: 100%;
+	animation: contador_comienzo 3s linear forwards;
+}
+/* div Bonus eleecion */
+div#eleccion_bonus {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #63BBF2;
+	display: flex;
+	flex-flow: row wrap;
+	display: none;
+}
+/* Input y label */
+div#eleccion_bonus > input {
+	display: none;
+}
+div#eleccion_bonus > label {
+	position: relative;
+	width: calc(1200px / 3);
+	padding: 64px 24px;
+	font-size: 2.5rem;
+	text-align: center;
+	height: 100%;
+	background: #f28379;
+	border: 1px solid white;
+	cursor: pointer;
+	z-index: 3;
+	transition: 0.3s ease-in;
+}
+div#eleccion_bonus > label:after {
+	position: absolute;
+	top: 40%;
+	left: 0;
+	width: 100%;
+	height: 60%;
+	font-size: 8rem;
+	display: grid;
+	place-items: center;
+	transition: 0.3s ease-in;
+}
+label[for="poder1"]:after {
+	content: '🐌';
+}
+label[for="poder2"]:after {
+	content: '🔎';
+}
+label[for="poder3"]:after {
+	content: 'X2';
+}
+input#poder1:checked ~ div#eleccion_bonus > label[for="poder1"] {
+	box-shadow:0px 0px 0px 20px white inset;
+}
+input#poder2:checked ~ div#eleccion_bonus > label[for="poder2"] {
+	box-shadow:0px 0px 0px 20px white inset;
+}
+input#poder3:checked ~ div#eleccion_bonus > label[for="poder3"] {
+	box-shadow:0px 0px 0px 20px white inset;
+}
+input#poder1:checked ~ div#eleccion_bonus > label[for="poder1"]:after {
+	text-shadow: 0px 0px 30px white;
+}
+input#poder2:checked ~ div#eleccion_bonus > label[for="poder2"]:after {
+	text-shadow: 0px 0px 30px white;
+}
+input#poder3:checked ~ div#eleccion_bonus > label[for="poder3"]:after {
+	text-shadow: 0px 0px 30px white;
+}
+/* logica de seleccion del input radio */
+input[type="radio"]:checked ~ input#next:checked ~ div#eleccion_bonus {
+	display: none;
+}
+input[type="radio"]:checked ~ input#next:checked ~ label[for="next"] {
+	display: none;
+}
+input[type="radio"]:checked ~ input#next:checked ~ label {
+	animation-play-state: running;
+}
+/*BONO1 Cambiar la duracion de la oleada */
+input#poder1:checked ~ input#next:checked  ~ label{
+	animation-duration: var(--nueva_duracion, var(--duracion_oleada_bono));
+}
+input#next:checked ~ div#eleccion_bonus {
+	display: ;
+	z-index: 1;
+	opacity: 1;
+}
+/*BONO2 Cambiar el tamaño de las naves */
+input#poder2:checked ~ input#next:checked ~ label{
+	width: 84px;
+	height: 84px;
+	margin: -12px;
+	margin-left: -8px;
+}
+/*BONO3 Duplicar los puntos */
+input#poder3:checked ~ input#next:checked ~ input[name="objetivo"]:checked{
+	counter-increment: divinos 20;
+}
+/* Boton se continuar a la próxima fase */
+label[for="next"] {
+	width: 260px;
+	height: 60px;
+	padding: 12px 16px;
+	font-size: 1.5rem;
+	border: 2px solid white;
+	background: #63bbf2;
+	opacity: 1;
+	transition: 0.3s ease-in;
+	text-transform: uppercase;
+	z-index: 9999;
+	text-align: center;
+	position: absolute;
+	top: 650px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+label[for="next"]:hover {
+	letter-spacing: 4px;
+	cursor: pointer;
+}
+/* El label (nave por defecto) */
+input[name="objetivo"] + label, input[name="objetivo_terrestre"] + label, input[name="objetivo_especial"] + label {
+	position: relative;
+	display: block;
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	background-image: url('ovni.png');
+	background-size: 70%;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin: 6px 0px;
+	padding: 0;
+	transition: 0.5s ease-in;
+}
+input[name="objetivo_terrestre"] + label {
+	background-image: url('nave.svg');
+}
+input[name="objetivo_especial"] + label {
+	background-color: gold;
+	background-image: url('nave-especial.png');
+}
+/* Segunda parte */
+hr {
+	display: none;
+}
+hr ~ input[name="objetivo"] + label, hr ~ input[name="objetivo_terrestre"] + label {
+	top: -700px;
+	left: -64px;
+}
+hr.hr2 ~ input[name="objetivo"] + label, hr.hr2 ~ input[name="objetivo_terrestre"] + label {
+	top: -1100px;
+	left: -64px;
+}
+hr.hr3 ~ input[name="objetivo"] + label, hr.hr3 ~ input[name="objetivo_terrestre"] + label {
+	top: -1660px;
+	left: -64px;
+}
+hr.hr4 ~ input[name="objetivo"] + label, hr.hr4 ~ input[name="objetivo_especial"] + label {
+	top: -2220px;
+	left: -64px;
+}
+hr.hr5 ~ input[name="objetivo"] + label, hr.hr5 ~ input[name="objetivo_especial"] + label {
+	top: -2800px;
+	left: -64px;
+}
+hr.hr6 ~ input[name="objetivo"] + label, hr.hr6 ~ input[name="objetivo_especial"] + label {
+	top: -3380px;
+	left: -64px;
+}
+div#fin-juego {
+	display: none;
+	width: 1024px;
+	margin: 2px auto;
+	height: 20px;
+	background: white;
+	color: black;
+	font-size: 14px;
+	position: relative;
+	bottom: 3324px;
+	overflow: hidden;
+	z-index: 999;
+}
+div#fin-juego:after {
+	color: white;
+	content: '....';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: purple;
+	transform: translateX(-100%);
+}
+@keyframes progreso {
+	from { transform: translateX(-100%); }
+	to { transform: translateX(0); content: 'Fin del juego';}
+}
+/*Animacion*/
+label[for="objetivo1"] {
+	animation: desplazamiento1 var(--duracion_primera_oleada) var(--tiempo_carga) linear 3 forwards;
+}
+label[for="objetivo2"] {
+	animation: desplazamiento2 var(--duracion_primera_oleada) var(--tiempo_carga) linear 3 forwards;
+}
+label[for="objetivo3"] {
+	animation: desplazamiento3 var(--duracion_primera_oleada) var(--tiempo_carga) linear 3 forwards;
+}
+label[for="objetivo4"] {
+	animation: desplazamiento4 var(--duracion_primera_oleada) var(--tiempo_carga) linear 3 forwards;
+}
+label[for="objetivo5"] {
+	animation: desplazamiento5 var(--duracion_primera_oleada) var(--tiempo_carga) linear 3 forwards;
+}
+label[for="objetivo6"] {
+	animation: desplazamiento6 var(--duracion_primera_oleada) var(--tiempo_carga) linear 3 forwards;
+}
+label[for="objetivo7"] {
+	animation: desplazamiento7 var(--duracion_primera_oleada) var(--tiempo_carga) linear 3 forwards;
+}
+/* Delay 2 oleada */
+label[for="objetivo8"] {
+	animation: desplazamiento8 var(--duracion_primera_oleada) var(--delay_segunda_oleada) linear 3 forwards;
+}
+label[for="objetivo9"] {
+	animation: desplazamiento9 var(--duracion_primera_oleada) var(--delay_segunda_oleada) linear 3 forwards;
+}
+label[for="objetivo10"] {
+	animation: desplazamiento10 var(--duracion_primera_oleada) var(--delay_segunda_oleada) linear 3 forwards;
+}
+label[for="objetivo11"] {
+	animation: desplazamiento11 var(--duracion_primera_oleada) var(--delay_segunda_oleada) linear 3 forwards;
+}
+label[for="objetivo12"] {
+	animation: desplazamiento12 var(--duracion_primera_oleada) var(--delay_segunda_oleada) linear 3 forwards;
+}
+/* delay 3 oleada */
+label[for="objetivo13"] {
+	animation: desplazamiento13 var(--duracion_primera_oleada) var(--delay_tercera_oleada) linear 3 forwards;
+}
+label[for="objetivo14"] {
+	animation: desplazamiento14 var(--duracion_primera_oleada) var(--delay_tercera_oleada) linear 3 forwards;
+}
+label[for="objetivo15"] {
+	animation: desplazamiento15 var(--duracion_primera_oleada) var(--delay_tercera_oleada) linear 3 forwards;
+}
+label[for="objetivo16"] {
+	animation: desplazamiento16 var(--duracion_primera_oleada) var(--delay_tercera_oleada) linear 3 forwards;
+}
+label[for="objetivo17"] {
+	animation: desplazamiento17 var(--duracion_primera_oleada) var(--delay_tercera_oleada) linear 3 forwards;
+}
+label[for="objetivo18"] {
+	animation: desplazamiento18 var(--duracion_primera_oleada) var(--delay_tercera_oleada) linear 3 forwards;
+}
+/* delay 4 oleada */
+label[for="objetivo19"] {
+	animation: desplazamiento2 var(--duracion_primera_oleada) var(--delay_cuarta_oleada) linear 3 forwards;
+}
+label[for="objetivo20"] {
+	animation: desplazamiento8 var(--duracion_primera_oleada) var(--delay_cuarta_oleada) linear 3 forwards;
+}
+label[for="objetivo21"] {
+	animation: desplazamiento12 var(--duracion_primera_oleada) var(--delay_cuarta_oleada) linear 3 forwards;
+}
+label[for="objetivo22"] {
+	animation: desplazamiento14 var(--duracion_primera_oleada) var(--delay_cuarta_oleada) linear 3 forwards;
+}
+label[for="objetivo23"] {
+	animation: desplazamiento11 var(--duracion_primera_oleada) var(--delay_cuarta_oleada) linear 3 forwards;
+}
+label[for="objetivo24"] {
+	animation: desplazamiento4 var(--duracion_primera_oleada) var(--delay_cuarta_oleada) linear 3 forwards;
+}
+label[for="objetivo25"] {
+	animation: desplazamiento12 var(--duracion_primera_oleada) var(--delay_cuarta_oleada) linear 3 forwards;
+}
+label[for="objetivo26"] {
+	animation: desplazamiento10 var(--duracion_primera_oleada) var(--delay_cuarta_oleada) linear 3 forwards;
+}
+/* delay 5 oleada */
+label[for="objetivo27"] {
+	animation: desplazamiento4 var(--duracion_primera_oleada) var(--delay_quinta_oleada) linear 3 forwards;
+}
+label[for="objetivo28"] {
+	animation: desplazamiento5 var(--duracion_primera_oleada) var(--delay_quinta_oleada) linear 3 forwards;
+}
+label[for="objetivo29"] {
+	animation: desplazamiento6 var(--duracion_primera_oleada) var(--delay_quinta_oleada) linear 3 forwards;
+}
+label[for="objetivo30"] {
+	animation: desplazamiento7 var(--duracion_primera_oleada) var(--delay_quinta_oleada) linear 3 forwards;
+}
+label[for="objetivo31"] {
+	animation: desplazamiento8 var(--duracion_primera_oleada) var(--delay_quinta_oleada) linear 3 forwards;
+}
+label[for="objetivo32"] {
+	animation: desplazamiento9 var(--duracion_primera_oleada) var(--delay_quinta_oleada) linear 3 forwards;
+}
+label[for="objetivo33"] {
+	animation: desplazamiento10 var(--duracion_primera_oleada) var(--delay_quinta_oleada) linear 3 forwards;
+}
+label[for="objetivo34"] {
+	animation: desplazamiento1 var(--duracion_primera_oleada) var(--delay_cuarta_oleada) linear 3 forwards;
+}
+label[for="objetivo35"] {
+	animation: desplazamiento2 var(--duracion_primera_oleada) var(--delay_cuarta_oleada) linear 3 forwards;
+}
+/* delay 6 oleada */
+label[for="objetivo36"] {
+	animation: desplazamiento3 var(--duracion_primera_oleada) var(--delay_sexta_oleada) linear 3 forwards;
+}
+label[for="objetivo37"] {
+	animation: desplazamiento4 var(--duracion_primera_oleada) var(--delay_sexta_oleada) linear 3 forwards;
+}
+label[for="objetivo38"] {
+	animation: desplazamiento5 var(--duracion_primera_oleada) var(--delay_sexta_oleada) linear 3 forwards;
+}
+label[for="objetivo39"] {
+	animation: desplazamiento6 var(--duracion_primera_oleada) var(--delay_sexta_oleada) linear 3 forwards;
+}
+label[for="objetivo40"] {
+	animation: desplazamiento7 var(--duracion_primera_oleada) var(--delay_sexta_oleada) linear 3 forwards;
+}
+label[for="objetivo41"] {
+	animation: desplazamiento8 var(--duracion_primera_oleada) var(--delay_sexta_oleada) linear 3 forwards;
+}
+/* delay 7 oleada */
+label[for="objetivo42"] {
+	animation: desplazamiento9 var(--duracion_primera_oleada) var(--delay_septima_oleada) linear 3 forwards;
+}
+label[for="objetivo43"] {
+	animation: desplazamiento10 var(--duracion_primera_oleada) var(--delay_septima_oleada) linear 3 forwards;
+}
+label[for="objetivo44"] {
+	animation: desplazamiento11 var(--duracion_primera_oleada) var(--delay_septima_oleada) linear 3 forwards;
+}
+label[for="objetivo45"] {
+	animation: desplazamiento12 var(--duracion_primera_oleada) var(--delay_septima_oleada) linear 3 forwards;
+}
+label[for="objetivo46"] {
+	animation: desplazamiento13 var(--duracion_primera_oleada) var(--delay_septima_oleada) linear 3 forwards;
+}
+label[for="objetivo47"] {
+	animation: desplazamiento14 var(--duracion_primera_oleada) var(--delay_septima_oleada) linear 3 forwards;
+}
+label[for="objetivo48"] {
+	animation: desplazamiento15 var(--duracion_primera_oleada) var(--delay_septima_oleada) linear 3 forwards;
+}
+label[for="objetivo49"] {
+	animation: desplazamiento16 var(--duracion_primera_oleada) var(--delay_septima_oleada) linear 3 forwards;
+}
+/* Las naves terrestres */
+label[for="ter1"] {
+	animation: desplazamiento1a var(--duracion_primera_oleada) var(--tiempo_carga) linear 3 forwards;
+}
+/* Delay 2 */
+label[for="ter2"] {
+	animation: desplazamiento2a var(--duracion_primera_oleada) var(--delay_segunda_oleada) linear 3 forwards;
+}
+label[for="ter3"] {
+	animation: desplazamiento3a var(--duracion_primera_oleada) var(--delay_segunda_oleada) linear 3 forwards;
+}
+/* Delay  3 */
+label[for="ter4"] {
+	animation: desplazamiento4a var(--duracion_primera_oleada) var(--delay_tercera_oleada) linear 3 forwards;
+}
+label[for="ter5"] {
+	animation: desplazamiento4 var(--duracion_primera_oleada) var(--delay_tercera_oleada) linear 3 forwards;
+}
+label[for="ter6"] {
+	animation: desplazamiento12 var(--duracion_primera_oleada) var(--delay_tercera_oleada) linear 3 forwards;
+}
+/* naves especiales */
+input#objetivo_e1:checked + label {
+	opacity: 0;
+	pointer-events: none;
+}
+input#objetivo_e1:checked ~ #fin-juego {
+	animation-play-state: paused;
+}
+input[type="radio"]:checked ~ input#objetivo_e1:checked ~ #fin-juego:after {
+	animation-play-state: running;
+}
+input#objetivo_e1:checked ~ label {
+	animation-play-state: paused;
+}
+input#objetivo_e1:checked ~ div#eleccion_bonus{
+	display: flex;
+}
+input#objetivo_e1:checked ~ label[for="next"] {
+	display: block;
+}
+/* Animacion de las naves especiales */
+label[for="objetivo_e1"], label[for="objetivo_e2"], label[for="objetivo_e3"], label[for="objetivo_e4"] {
+	animation: desplazamiento10 var(--duracion_primera_oleada) var(--delay_cuarta_oleada) linear 3 forwards;
+}
+/* Posicionar algunos input */
+input[name="objetivo"], input[name="objetivo_terrestre"] {
+	position: fixed;
+	top: 50px;
+	left: 50px;
+	width: 20px;
+	height: 20px;
+}
+/* Si en el dom colocamos el input y despues su label no habra problemas */
+input[name="objetivo"]:checked + label, input[name="objetivo_terrestre"]:checked + label {
+	opacity: 0;
+	z-index: 0;
+	background-image: url('ovni_rojo.svg');
+	transition: 0.3s ease-in;
+	pointer-events: none;
+}
+input[name="objetivo_terrestre"]:checked + label {
+	background-image: url('nave_roja.svg');
+}
+input[name="objetivo"], input[name="objetivo_terrestre"] {
+	opacity: 0;
+	border: none;
+	outline: none;
+}
+/* Animacion del contador 3 segundos al comenzar*/
+@keyframes contador_comienzo {
+	0% { content: '3'; opacity: 1;}
+	33% { content: '2'; opacity: 1;}
+	66% { content: '1'; opacity: 0.8;}
+	99% { content: '0'; opacity: 0; }
+	100% { display: none; }
+}
+/* Animaciones de las naves */
+@keyframes desplazamiento1 {
+	0%{ transform: translateX(-50px) translateY(0px); }
+	25%{ transform: translateX(300px) translateY(200px); }
+	50%{ transform: translateX(500px) translateY(76px); }
+	75%{ transform: translateX(700px) translateY(-68px); }
+	100% { transform: translateX(1300px) translateY(90px); }
+}
+@keyframes desplazamiento2 {
+	0%{ transform: translateX(-50px) translateY(0px); }
+	25%{ transform: translateX(850px) translateY(100px); }
+	50%{ transform: translateX(1000px) translateY(32px); }
+	75%{ transform: translateX(1100px) translateY(-18px); }
+	100% { transform: translateX(1300px) translateY(120px); }
+}
+@keyframes desplazamiento3 {
+	0%{ transform: translateX(-50px) translateY(50px); }
+	25%{ transform: translateX(850px) translateY(-50px); }
+	50%{ transform: translateX(1000px) translateY(99px); }
+	75%{ transform: translateX(1100px) translateY(38px); }
+	100% { transform: translateX(1300px) translateY(80px); }
+}
+@keyframes desplazamiento4 {
+	0%{ transform: translateX(-50px) translateY(80px); }
+	25%{ transform: translateX(200px) translateY(30px); }
+	50%{ transform: translateX(300px) translateY(-20px); }
+	75%{ transform: translateX(800px) translateY(-80px); }
+	100% { transform: translateX(1300px) translateY(10px); }
+}
+@keyframes desplazamiento5 {
+	0%{ transform: translateX(-50px) translateY(0px); }
+	25%{ transform: translateX(350px) translateY(100px); }
+	50%{ transform: translateX(600px) translateY(32px); }
+	75%{ transform: translateX(1110px) translateY(-18px); }
+	100% { transform: translateX(1300px) translateY(120px); }
+}
+@keyframes desplazamiento6 {
+	0%{ transform: translateX(-50px) translateY(50px); }
+	25%{ transform: translateX(200px) translateY(-50px); }
+	50%{ transform: translateX(564px) translateY(99px); }
+	75%{ transform: translateX(777px) translateY(38px); }
+	100% { transform: translateX(1300px) translateY(80px); }
+}
+@keyframes desplazamiento7 {
+	0%{ transform: translateX(-50px) translateY(-80px); }
+	25%{ transform: translateX(543px) translateY(10px); }
+	50%{ transform: translateX(788px) translateY(-50px); }
+	75%{ transform: translateX(970px) translateY(-120px); }
+	100% { transform: translateX(1300px) translateY(-30px); }
+}
+@keyframes desplazamiento8 {
+	0%{ transform: translateX(-50px) translateY(80px); }
+	25%{ transform: translateX(245px) translateY(200px); }
+	50%{ transform: translateX(300px) translateY(450px); }
+	75%{ transform: translateX(670px) translateY(320px); }
+	100% { transform: translateX(1300px) translateY(230px); }
+}
+@keyframes desplazamiento9 {
+	0%{ transform: translateX(-50px) translateY(30px); }
+	25%{ transform: translateX(443px) translateY(78px); }
+	50%{ transform: translateX(888px) translateY(150px); }
+	75%{ transform: translateX(1270px) translateY(120px); }
+	100% { transform: translateX(1300px) translateY(130px); }
+}
+@keyframes desplazamiento10 {
+	0%{ transform: translateX(-50px) translateY(-23px); }
+	25%{ transform: translateX(377px) translateY(23px); }
+	50%{ transform: translateX(800px) translateY(-50px); }
+	75%{ transform: translateX(1070px) translateY(-60px); }
+	100% { transform: translateX(1300px) translateY(-30px); }
+}
+@keyframes desplazamiento11 {
+	0%{ transform: translateX(-50px) translateY(-80px); }
+	25%{ transform: translateX(343px) translateY(10px); }
+	50%{ transform: translateX(488px) translateY(-50px); }
+	75%{ transform: translateX(770px) translateY(-120px); }
+	100% { transform: translateX(1300px) translateY(-30px); }
+}
+@keyframes desplazamiento12 {
+	0%{ transform: translateX(-50px) translateY(45px); }
+	25%{ transform: translateX(743px) translateY(31px); }
+	50%{ transform: translateX(988px) translateY(-50px); }
+	75%{ transform: translateX(1040px) translateY(173px); }
+	100% { transform: translateX(1300px) translateY(30px); }
+}
+@keyframes desplazamiento13 {
+	0%{ transform: translateX(-50px) translateY(-80px); }
+	25%{ transform: translateX(643px) translateY(10px); }
+	50%{ transform: translateX(868px) translateY(-50px); }
+	75%{ transform: translateX(1270px) translateY(-120px); }
+	100% { transform: translateX(1300px) translateY(-30px); }
+}
+@keyframes desplazamiento14 {
+	0%{ transform: translateX(-50px) translateY(-56px); }
+	25%{ transform: translateX(343px) translateY(-50px); }
+	50%{ transform: translateX(588px) translateY(-10px); }
+	75%{ transform: translateX(770px) translateY(-280px); }
+	100% { transform: translateX(1300px) translateY(-130px); }
+}
+@keyframes desplazamiento15 {
+	0%{ transform: translateX(-50px) translateY(46px); }
+	25%{ transform: translateX(123px) translateY(78px); }
+	50%{ transform: translateX(488px) translateY(110px); }
+	75%{ transform: translateX(970px) translateY(280px); }
+	100% { transform: translateX(1300px) translateY(-130px); }
+}
+@keyframes desplazamiento16 {
+	0%{ transform: translateX(-50px) translateY(-56px); }
+	25%{ transform: translateX(243px) translateY(-150px); }
+	50%{ transform: translateX(788px) translateY(-110px); }
+	75%{ transform: translateX(1270px) translateY(-280px); }
+	100% { transform: translateX(1300px) translateY(-250px); }
+}
+@keyframes desplazamiento17 {
+	0%{ transform: translateX(-50px) translateY(-206px); }
+	25%{ transform: translateX(255px) translateY(-170px); }
+	50%{ transform: translateX(689px) translateY(-140px); }
+	75%{ transform: translateX(870px) translateY(-180px); }
+	100% { transform: translateX(1300px) translateY(-130px); }
+}
+@keyframes desplazamiento1a {
+	0%{ transform: translateX(-50px) translateY(40px) rotate(90deg); }
+	25%{ transform: translateX(278px) translateY(120px) rotate(90deg); }
+	50%{ transform: translateX(655px) translateY(246px) rotate(90deg); }
+	75%{ transform: translateX(1034px) translateY(168px) rotate(90deg); }
+	100% { transform: translateX(1300px) translateY(90px) rotate(90deg); }
+}
+@keyframes desplazamiento2a {
+	0%{ transform: translateX(-50px) translateY(26px) rotate(90deg); }
+	25%{ transform: translateX(378px) translateY(45px) rotate(90deg); }
+	50%{ transform: translateX(766px) translateY(136px) rotate(90deg); }
+	75%{ transform: translateX(894px) translateY(45px) rotate(90deg); }
+	100% { transform: translateX(1300px) translateY(-20px) rotate(90deg); }
+}
+@keyframes desplazamiento3a {
+	0%{ transform: translateX(-50px) translateY(-40px) rotate(90deg); }
+	25%{ transform: translateX(278px) translateY(-120px) rotate(90deg); }
+	50%{ transform: translateX(655px) translateY(-246px) rotate(90deg); }
+	75%{ transform: translateX(1034px) translateY(-168px) rotate(90deg); }
+	100% { transform: translateX(1300px) translateY(-90px) rotate(90deg); }
+}
+@keyframes desplazamiento4a {
+	0%{ transform: translateX(-50px) translateY(-40px) rotate(90deg); }
+	25%{ transform: translateX(778px) translateY(40px) rotate(90deg); }
+	50%{ transform: translateX(955px) translateY(-40px) rotate(90deg); }
+	75%{ transform: translateX(1134px) translateY(40px) rotate(90deg); }
+	100% { transform: translateX(1300px) translateY(-40px) rotate(90deg); }
+}
