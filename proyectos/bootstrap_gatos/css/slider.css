@@ -1,0 +1,171 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Audiowide', cursive!important;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+body {
+	background-color: gold;
+}
+header {
+	position: fixed;
+	top: 0;
+	background-color: rgba(112,112,112, 0.6);
+	width: 100%;
+	z-index: 10;
+}
+header a {
+	transition: 0.3s ease-in;
+	color: white;
+	text-decoration: none;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 22px 15px;
+	border-bottom: 4px solid transparent;
+}
+header > nav {
+	width: 80%;
+}
+header nav #navbarNav {
+	position: relative;
+	left: 10%;
+	justify-content: center;
+}
+header>a.float-ende {
+	text-decoration: none;
+	font-size: 20px;
+	color: white;
+	padding: 10px;
+	position: absolute;
+	top: 7px;
+	right: 20px;
+}
+.ende1 {
+	top: 8px;
+	right: 16px;
+}
+.ende2 {
+	position: absolute;
+	top: 11px;
+	right: 35px;
+}
+.ende3 {
+	position: absolute;
+	top: 10px;
+	right: 50px;
+}
+a>img {
+	width: 16px;
+}
+nav a:hover {
+	transition: 0.3s ease-in;
+	color: orange!important;
+}
+
+/* Slider */
+#carouselExampleCaptions {
+	max-height: 100vh!important;
+	overflow: hidden;
+}
+.carousel-caption {
+	bottom: 200px!important;
+}
+div>div>div>div.cuadrado {
+	background-color: rgba(255,255,255, 0.5);
+	width: 60%;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 15vh;
+	height: auto;
+	padding: 16px;
+	margin-bottom: 10%;
+	z-index: 10;
+	transition: 0.3s ease-in;
+}
+.cuadrado:hover {
+	transition: 0.3s ease-in;
+	background-color: rgba(255,255,255, 0.6);
+	cursor: pointer;
+}
+div>div>div>div.cuadrado>h1 {
+	font-size: 6rem;
+	color: black;
+	font-family: 'Audiowide', cursive!important;
+	width: 100%;
+	text-align: center;
+	transition: 0.3s ease-in;
+}
+
+div.learn-more {
+	display: inline-block;
+	padding: 10px 30px;
+	border: 5px solid white;
+	width: 200px;
+	margin: 0 auto;
+	font-weight: bold;
+	transition: 0.2s ease-out;
+}
+div.buy-now {
+	display: inline-block;
+	padding: 10px 30px;
+	border: 5px solid black;
+	width: 200px;
+	background-color: white;
+	color: black;
+	margin: 0 auto;
+	font-weight: bold;
+	transition: 0.2s ease-out;
+}
+div.learn-more:hover {
+	transition: 0.2s ease-out;
+	background-color: white;
+	color: black;
+}
+div.buy-now:hover {
+	transition: 0.2s ease-out;
+	background-color: black;
+	border: 5px solid black;
+	color: white;
+}
+div.carousel-caption2 {
+	margin-bottom: 200px;
+}
+.carousel-caption2>h1 {
+	font-weight: bold;
+	font-size: 60px;
+}
+.carousel-caption>p {
+	font-size: 14px!important;
+}
+@media (min-width: 1201px) and (max-width: 1600px) {
+	.carousel-caption {
+		bottom: 0px!important;
+	}
+}
+@media (min-width: 721px) and (max-width: 1200px) {
+	.carousel-caption {
+		bottom: 0!important;
+		top: 12vh!important;
+		margin-top: 6vh!important;
+	}
+	.carousel-caption2 h1{
+		font-size: 2rem;
+	}
+
+	.cuadrado {
+		margin-top: 0!important;
+	}
+	.cuadrado h1 {
+		font-size: 4rem!important;
+	}
+}
+@media (max-width: 600px) {
+	header > a {
+		display: none!important;
+	}
+}

@@ -1,0 +1,501 @@
+/* El reset necesario */
+:root {
+	--rgb_velo: 242, 159, 5;
+	--color_velo: rgb(var(--rgb_velo));
+	--color_velo_opaco: rgb(var(--rgb_velo), 0.2);
+
+	--color_borde_velo: navy;
+	--grosor_borde_velo: 4px;
+
+	--rgb_neon: 215, 5, 242;
+	--color_neon: rgb(var(--rgb_neon));
+	--color_neon_opaco3: rgb(var(--rgb_neon), 0.2);
+	--color_neon_opaco2: rgb(var(--rgb_neon), 0.4);
+	--color_neon_opaco: rgb(var(--rgb_neon), 0.8);
+
+	--v_transition: 0.5s ease;
+	--v_transition_out: 0.5s ease-out;
+
+	--radio_borde_sombras: 4px;
+}
+*:after,
+*:before {
+	box-sizing: border-box;
+	content: '';
+	display: none;
+}
+.velo,
+.borde,
+.forma,
+.triangunlo,
+.all_borde,
+.sombra {
+	position: relative!important;
+}
+.velo:after,
+.velo:before,
+.forma:after,
+.borde:after,
+.all_borde:after,
+.triangulo:after,
+.sombra:after,
+.forma:before,
+.borde:before,
+.all_borde:before,
+.triangulo:before,
+.sombra:before {
+	display: grid;
+	place-items: center;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	transition: .5s ease;
+}
+/* Velos 1 */
+	.velo:after, .velo:before {
+		background: var(--color_velo);
+		inset: 0 100% auto auto;
+	}
+	.velo:before {
+		display: none;
+	}
+	.rtl:after {
+		inset: 0 auto auto 100%;
+	}
+	.ttb:after {
+		inset: auto auto 100% 0;
+	}
+	.btt:after {
+		inset: 100% auto auto 0;
+	}
+	.velo:hover:after,
+	.velo:hover:before {
+		inset: 0% 0% auto auto;
+	}
+	.rtl:hover:after {
+		inset: 0 auto auto 0%;
+	}
+	.ttb:hover:after {
+		inset: auto auto 0% 0%;
+	}
+	.btt:hover:after {
+		inset: 0% auto auto 0%;
+	}
+/* Velos Dobles */
+	.velo[class~="doble"]:after,
+	.velo[class~="doble"]:before,
+	.velo[class~="doble-vertical"]:before {
+		width: 50%;
+		height: 100%;
+		display: block;
+	}
+	.velo[class~="doble"]:after {
+		inset: 0 100% auto auto;
+	}
+	.velo[class~="doble"]:before {
+		inset: 0 auto auto 100%;
+	}
+	.velo[class~="doble"]:hover:after {
+		inset: 0 50% auto auto;
+	}
+	.velo[class~="doble"]:hover:before {
+		inset: 0 auto auto 50%;
+	}
+	.velo[class~="doble-vertical"]:after,
+	.velo[class~="doble-vertical"]:before {
+		width: 100%;
+		height: 50%;
+	}
+	.velo[class~="doble-vertical"]:after {
+		inset: auto auto 100% 0;
+	}
+	.velo[class~="doble-vertical"]:before {
+		inset: 100% auto auto 0;
+	}
+	.velo[class~="doble-vertical"]:hover:after {
+		inset: auto auto 50% 0 ;
+	}
+	.velo[class~="doble-vertical"]:hover:before {
+		inset: 50% auto auto 0;
+	}
+/* Velos con formas de dibujos */
+	.velo[class~="forma"]:after {
+		font-size: 12px;
+		content: '▪';
+		inset: 0 auto auto 0;
+		color: transparent;
+		background: transparent;
+		transition: 0.5s linear;
+	}
+	.velo[class~="forma"]:hover:after {
+		transform: scale(80);
+		inset: 0 auto auto 0;
+		color: var(--color_velo);
+	}
+	.forma[class~="circulo"]:after {
+		content: '•';
+	}
+	.forma[class~="rombo"]:after {
+		content: '♦';
+	}
+	.forma[class~="circulo2"]:after {
+		content: '⦿';
+	}
+/* Velos Bordes */
+	.borde:before {
+		display: none;
+	}
+	.borde:after,
+	.borde:before {
+		background: var(--color_borde_velo);
+		height: var(--grosor_borde_velo);
+		inset: auto 100% 0 auto;
+	}
+	.borde:hover:after {
+		inset: auto 0 0 auto;
+	}
+	.borde[class~="top"]:after,
+	.borde[class~="top"]:before,
+	body .central[class~="top"]:after,
+	body .central[class~="top"]:before {
+		top: 0;
+	}
+	.borde[class~="ltr"]:after,
+	.borde[class~="ltr"]:before,
+	.borde[class~="doble"]:before {
+		right: 100%;
+	}
+	.borde[class~="rtl"]:after,
+	.borde[class~="rtl"]:before {
+		left: 100%;
+	}
+	.borde[class~="ltr"]:hover:after,
+	.borde[class~="ltr"]:hover:before,
+	.borde[class~="doble"]:hover:before {
+		right: 0%;
+	}
+	.borde[class~="rtl"]:hover:after,
+	.borde[class~="rtl"]:hover:before {
+		left: 0%;
+	}
+	/* Borde central */
+	.borde[class~="central"]:after,
+	.borde[class~="central"]:before {
+		inset: auto auto 0 50%;
+		transform: translateX(-50%);
+		width: 0%;
+	}
+	.central:hover:after,
+	.central:hover:before {
+		width: 100%;
+	}
+/* 2 Bordes */
+	.borde[class~="doble"]:before {
+		display: block;
+		top: 0;
+	}
+/* Borde completo */
+	.all_borde:after,
+	.all_borde:before{
+		width: 0%;
+		height: 0%;
+	}
+	.all_borde:after {
+		border-bottom: var(--grosor_borde_velo) solid var(--color_borde_velo);
+		border-left: var(--grosor_borde_velo) solid var(--color_borde_velo);
+		inset: auto auto 0 0;
+	}
+	.all_borde:before {
+		border-top: var(--grosor_borde_velo) solid var(--color_borde_velo);
+		border-right: var(--grosor_borde_velo) solid var(--color_borde_velo);
+		inset: 0 0 auto auto;
+	}
+	.all_borde:hover:after,
+	.all_borde:hover:before {
+		width: 100%;
+		height: 100%;
+	}
+	.all_borde[class~="inset_x"]:after,
+	.all_borde[class~="inset_x"]:before {
+		transform: scaleX(-1);
+	}
+	.all_borde[class~="inset_y"]:after,
+	.all_borde[class~="inset_y"]:before {
+		transform: scaleY(-1);
+	}
+	.all_borde[class~="inset"]:after,
+	.all_borde[class~="inset"]:before {
+		transform: scale(-1);
+	}
+/* Triangulo*/
+	.triangulo:before {
+		width: 0;
+		height: 0;
+		border: calc(var(--grosor_borde_velo) * 3) solid transparent;
+		display: block;
+		background: transparent;
+		z-index: 2;
+	}
+	.triangulo[class~="bot"]:before {
+		inset: auto auto 0 50%;
+		transform: translateX(-50%) translateY(50%);
+		border-bottom: calc(var(--grosor_borde_velo) * 3) solid var(--color_borde_velo);
+	}
+	.triangulo[class~="top"]:before {
+		inset: 0 auto auto 50%;
+		transform: translateX(-50%) translateY(-50%);
+		border-top: calc(var(--grosor_borde_velo) * 3) solid var(--color_borde_velo);
+	}
+	.triangulo[class~="bot"]:hover:before,
+	.triangulo[class~="top"]:hover:before {
+		transform: translateX(-50%) translateY(0);
+	}
+	.triangulo[class~="left"]:before {
+		inset: 50% auto auto 0;
+		transform: translateX(-50%) translateY(-50%);
+		border-left: calc(var(--grosor_borde_velo) * 3) solid var(--color_borde_velo);
+	}
+	.triangulo[class~="right"]:before {
+		inset: 50% 0 auto auto;
+		transform: translateX(50%) translateY(-50%);
+		border-right: calc(var(--grosor_borde_velo) * 3) solid var(--color_borde_velo);
+	}
+	.triangulo[class~="left"]:hover:before,
+	.triangulo[class~="right"]:hover:before {
+		transform: translateX(0%) translateY(-50%);
+	}
+/* sombra 3D */
+	.sombra {
+		overflow: visible!important;
+		transform-style: preserve-3d;
+	}
+	.sombra:after,
+	.sombra:before {
+		display: block;
+		z-index: -2;
+		transform: translateZ(-1px);
+		border: var(--grosor_borde_velo) solid var(--color_borde_velo);
+		background: transparent;
+		border-radius: var(--radio_borde_sombras);
+	}
+	.sombra:before {
+		border: none;
+		background: var(--color_velo);
+	}
+	.sombra:after,
+	.sombra[class~="alreves_hover"]:hover:before {
+		inset: calc(-10% + -4px) auto auto calc(-10% + -4px);
+	}
+	.sombra:before,
+	.sombra[class~="alreves_hover"]:hover:after {
+		inset: calc(10% + 4px) auto auto calc(10% + 4px);
+	}
+	.sombra[class~="s2"]:after,
+	.sombra[class~="inv_hover"]:hover:before {
+		inset: calc(-10% + -4px) auto auto calc(10% + 4px);
+	}
+	.sombra[class~="s2"]:before,
+	.sombra[class~="inv_hover"]:hover:after {
+		inset: calc(10% + 4px) auto auto calc(-10% + -4px);
+	}
+	.sombra:hover:after,
+	.sombra:hover:before {
+		inset: 0 auto auto 0;
+	}
+	.s2[class~="alreves_hover"]:hover:after {
+		inset: calc(10% + 4px) auto auto calc(-10% + -4px);
+	}
+	.s2[class~="alreves_hover"]:hover:before {
+		inset: calc(-10% + -4px) auto auto calc(10% + 4px);
+	}
+	.sombra[class~="hidden"]:after,
+	.sombra[class~="hidden"]:before {
+		inset: 0 0 0 0;
+	}
+/* fancy */
+	.fancy:after,
+	.fancy:before {
+		transition: 0.5s ease-out;
+	}
+	.fancy:hover:after, .fancy:hover:before {
+		width: 0;
+	}
+	.fancy[class~="btt"]:hover:after,
+	.fancy[class~="ttb"]:hover:after {
+		width: 100%;
+		height: 0;
+	}
+/* Origen */
+	.origin:after {
+		inset: 0 0 0 0;
+		transform-origin: top right;
+		transform: scaleX(0);
+		transition: transform 0.5s ease;
+	}
+	.origin:hover:after {
+		inset: 0 0 0 0;
+		transform-origin: top left;
+		transform: scaleX(1);
+	}
+	.origin[class~="rtl"]:after {
+		transform-origin: left;
+	}
+	.origin[class~="rtl"]:hover:after {
+		transform-origin: right;
+	}
+	.origin[class~="ttb"]:after,
+	.origin[class~="btt"]:after {
+		transform-origin: 100% 100%;
+		transform: scaleY(0);
+	}
+	.origin[class~="ttb"]:hover:after,
+	.origin[class~="btt"]:hover:after {
+		transform-origin: 0% 0%;
+		transform: scaleY(1);
+	}
+	.origin[class~="btt"]:after {
+		transform-origin: 0% 0%;
+	}
+	.origin[class~="btt"]:hover:after {
+		transform-origin: 100% 100%;
+	}
+/* origin para bordes */
+	.origin[class~="borde"]:after {
+		inset: auto auto 0 auto;
+		transform-origin: right;
+		transform: scaleX(0);
+	}
+	.origin[class~="borde"]:hover:after {
+		transform-origin: left;
+		transform: scaleX(1);
+	}
+	.origin[class~="top"]:after {
+		inset: 0 auto auto auto;
+		transform-origin: right;
+		transform: scaleX(0);
+	}
+	.origin[class~="top"]:hover:after {
+		inset: 0 auto auto auto;
+		transform-origin: left;
+		transform: scaleX(1);
+	}
+	.origin[class~="rtl"]:after {
+		transform-origin: left;
+	}
+	.origin[class~="rtl"]:hover:after {
+		transform-origin: right;
+	}
+/* z-index */
+	.z-1, .z-1 {
+		z-index: 1;
+	}
+	.z-1:after {
+		z-index: -2;
+	}
+	.z-1:before {
+		z-index: -1;
+	}
+/* opacity */
+	.opacity:not(:hover):after,
+	.opacity:not(:hover):before {
+		animation: opacidad 0.5s linear;
+	}
+	.opacity[class~="velo"]:hover:after,
+	.opacity[class~="velo"]:hover:before {
+		animation: opacidad_velo_inicio 0.5s linear backwards;
+	}
+	.opacity[class~="borde"]:hover:after,
+	.opacity[class~="borde"]:hover:before {
+		animation: opacidad_borde_inicio 0.5s linear backwards;
+	}
+	@keyframes opacidad_velo_inicio {
+		0% { background: transparent;}
+		100% { background: var(--color_velo); }
+	}
+	@keyframes opacidad_borde_inicio {
+		0% { background: transparent;}
+		100% { background: var(--color_borde_velo); }
+	}
+	@keyframes opacidad {
+		100% { background: transparent; }
+	}
+	.opacity[class~="all_borde"]:after,
+	.opacity[class~="all_borde"]:before{ 
+		border-color: transparent; 
+	}
+	.opacity[class~="all_borde"]:hover:after,
+	.opacity[class~="all_borde"]:hover:before { 
+		border-color: var(--color_borde_velo); 
+	}
+/* opacity alrever */
+	.op-r[class~="velo"]:after,
+	.op-r[class~="velo"]:before,
+	.op-r[class~="borde"]:after,
+	.op-r[class~="borde"]:before {
+		background: transparent;
+	}
+	.op-r:not(:hover):after,
+	.op-r:not(:hover):before {
+		animation: reverse_opacidad 0.5s linear backwards;
+	}
+	.op-r[class~="velo"]:hover:after,
+	.op-r[class~="velo"]:hover:before {
+		animation: reverse_velo_inicio 0.5s linear backwards;
+	}
+	.op-r[class~="borde"]:hover:after,
+	.op-r[class~="borde"]:hover:before {
+		animation: reverse_borde_inicio 0.5s linear backwards;
+	}
+	@keyframes reverse_opacidad {
+		100% { background: var(--color_velo);}
+	}
+	@keyframes reverse_velo_inicio {
+		0% { background:  var(--color_velo);}
+		100% { background: transparent ;}
+	}
+	@keyframes reverse_borde_inicio {
+		0% { background:  var(--color_borde_velo);}
+		100% { background: transparent ;}
+	}
+	.op-r[class~="all_borde"]:after,
+	.op-r[class~="all_borde"]:before{ 
+		border-color: var(--color_borde_velo); 
+		background: transparent!important;
+	}
+	.op-r[class~="all_borde"]:hover:after,
+	.op-r[class~="all_borde"]:hover:before { 
+		border-color: transparent; 
+	}
+/* Outline */
+	.outline {
+		outline: 1px solid transparent;
+		outline-color: transparent;
+		outline-offset: -1px;
+	}
+	.outline:not(:hover) {
+		animation: brrr .4s 100ms linear 1;
+	}
+	@keyframes brrr {
+		100% { outline-offset: -1px; outline-color: transparent;}
+	}
+	.outline[class~="double"] {
+		outline-style: double;
+		outline-width: 4px;
+	}
+	.outline[class~="dashed"] {
+		outline-style: dashed;
+		outline-width: 2px;
+	}
+	.outline[class~="inset"] {
+		outline-style: inset;
+		outline-width: 2px;
+	}
+	.outline:hover {
+		animation: outlines .4s linear 1;
+	}
+	@keyframes outlines {
+		0% {outline-color: transparent;}
+		50% {outline-color: var(--color_borde_velo); outline-offset: .5rem;}
+		100% {outline-color: transparent; outline-offset: 1rem;}
+	}
+/* Fin del CSS*/

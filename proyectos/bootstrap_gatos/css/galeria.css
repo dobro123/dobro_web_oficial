@@ -1,0 +1,123 @@
+:root {
+	--color_naranja : #dd5533;
+	--color_naranja2 : #dd553390;
+	--color_gris: #8a8a8a;
+	--color_azul: #1D4EDE;
+}
+/* Cuerpo */
+body {
+	max-width: 1920px;
+}
+main {
+	margin-top: 100px;
+}
+h2 {
+	color: var(--color_azul);
+}
+#contenedor_galeria_gatitos, #contenedor_galeria_gatitos2 {
+	max-width: 1600px;
+}
+#contenedor_galeria_gatitos > div, #contenedor_galeria_gatitos2 >div {
+	width: 320px;
+	height: 300px;
+	border-bottom: 1px solid var(--color_naranja);
+}
+#contenedor_galeria_gatitos > div > img {
+	top: 0;
+}
+#contenedor_galeria_gatitos > div > section {
+	color: var(--color_naranja);
+	bottom: 0;
+	height: 100px;
+	width: 100%;
+}
+/* Elementos After y before */
+#contenedor_galeria_gatitos > div:before {
+	content: '';
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background-image: url('../img/gatito.svg');
+	background-size: 32px;
+	background-repeat: no-repeat;
+	background-position: center;
+	z-index: 3;
+}
+#contenedor_galeria_gatitos > div:after {
+	content: '';
+	width: 6%;
+	height: 6%;
+	position: absolute;
+	bottom: 0;
+	left: 46%;
+	z-index: 3;
+	border: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	transform: translateY(100%);
+	transition: 0.3s ease-in;
+}
+/* Galeria2 */
+#contenedor_galeria_gatitos2 > div {
+	border: none;
+	height: 200px;
+}
+#contenedor_galeria_gatitos2 > div > div {
+	height: 100%;
+	transition: 0.3s ease-in;
+}
+#contenedor_galeria_gatitos2 > div > div:hover > img {
+	transform: scale(0.8);
+}
+#contenedor_galeria_gatitos2 > div > section {
+	bottom: -100%;
+	height: 100%;
+	width: 100%;
+	transition: 0.3s ease-in;
+	color: var(--color_naranja);
+	background: #e9d7cc;
+}
+#contenedor_galeria_gatitos2 > div > section:before {
+	content: '';
+	height: 32px;
+	width: 100%;
+	background-image: url('../img/gatito.svg');
+	background-size: 32px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+#contenedor_galeria_gatitos2 > div > section:after {
+	width: 100px;
+	margin: 0 auto;
+	content: 'Ver + info';
+	color: white;
+	border: 1px solid white;
+}
+#contenedor_galeria_gatitos2 > div > section:hover:after {
+	cursor: pointer;
+}
+#contenedor_galeria_gatitos2 > div:hover > section {
+	bottom: 0;
+}
+/* Hovers y transiciones*/
+img {
+	transition: 0.3s ease-in;
+}
+#contenedor_galeria_gatitos > div:hover:after {
+	border-bottom: 10px solid var(--color_naranja);
+	transform: translateY(0);
+}
+#contenedor_galeria_gatitos > div:hover img {
+	transform: scale(1.15);
+}
+
+main#blog *, h1 {
+	font-family: sans-serif!important;
+}
+.text-justify {
+	text-align: justify;
+}
+h1 {
+	margin-top: 80px!important;
+}

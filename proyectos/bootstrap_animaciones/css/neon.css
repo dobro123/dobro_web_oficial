@@ -1,0 +1,55 @@
+.neon {
+	border: 3px solid white!important;
+	box-shadow: inset 0 0 12px var(--color_neon_opaco), 0 0 12px 3px var(--color_neon_opaco2);
+	margin:150px auto;
+	overflow: visible;
+	perspective: 10rem;
+	border: none;
+	width: 120px;
+	height: 48px;
+	display: grid;
+	place-items:center;
+	font-family: sans-serif;
+	background: white;
+	color: var(--color_neon);
+	font-weight: bold;
+}
+.neon:after {
+	inset: 0 0 auto 50%;
+	background: #ffffff20;
+	width: 110%;
+	height: 200%;
+	transform-style: preserve-3d;
+	transform: rotateX(5deg) translateX(-50%);
+}
+.neon:before {
+	position: absolute;
+	bottom: -70%;
+	left: 50%;
+	background: var(--color_neon_opaco2);
+	color: var(--color_neon_opaco2);
+	transform-style: preserve-3d;
+	transform: rotateX(5deg) translateX(-50%);
+	height: 50%;
+	width: 110%;
+	filter: blur(4px);
+	box-shadow: 0 0 16px 4px var(--color_neon_opaco2);
+	content: attr(data-contentcss);
+	border: 2px solid transparent;
+}
+.neon:hover {
+	transform: translateY(-1rem);
+	background: var(--color_neon_opaco);
+	color: white;
+	box-shadow: inset 0 0 12px white, 0 0 16px 3px var(--color_neon_opaco);
+}
+.neon:hover:before {
+	transform: rotateX(45deg) translateX(-50%);
+	box-shadow: 0 0 16px 4px var(--color_neon_opaco);
+	background: var(--color_neon_opaco);
+	filter: blur(1px);
+	height: 60%;
+	bottom: -90%;
+	border: 2px solid white;
+	color: white;
+}

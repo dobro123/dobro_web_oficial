@@ -1,0 +1,69 @@
+:root {
+	--rgb_velo: 242, 159, 5;
+	--color_velo: rgb(var(--rgb_velo));
+	--color_velo_opaco: rgb(var(--rgb_velo), 0.2);
+
+	--color_borde_velo: navy;
+	--grosor_borde_velo: 4px;
+
+	--rgb_neon: 215, 5, 242;
+	--color_neon: rgb(var(--rgb_neon));
+	--color_neon_opaco3: rgb(var(--rgb_neon), 0.2);
+	--color_neon_opaco2: rgb(var(--rgb_neon), 0.4);
+	--color_neon_opaco: rgb(var(--rgb_neon), 0.8);
+
+	--v_transition: 0.5s ease;
+	--v_transition_out: 0.5s ease-out;
+
+	--radio_borde_sombras: 4px;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	transition: var(--v_transition);
+	text-align: center;
+	font-family: sans-serif;
+}
+body {
+	background: #D9D9D9;
+}
+main{
+	margin: 50px 0;
+}
+main > .contenedor {
+	width: 80%;
+	max-width: 780px;
+	height: auto;
+	margin: 0 auto;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	gap: 8px;
+}
+/* Contenedores */
+main > .contenedor > div {
+	width: 160px;
+	height: 40px;
+	border-radius: 4px;
+	background: white;
+	margin: 24px auto;
+	position: relative;
+	overflow: hidden;
+	display: grid;
+	place-items: center;
+	z-index: 1;
+	cursor: pointer;
+	text-transform: capitalize;
+}
+/* Conteendores */
+*:after, *:before {
+	box-sizing: border-box;
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: grid;
+	place-items:center;
+	transition: var(--v_transition);
+}

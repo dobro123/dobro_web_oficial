@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Guia Bootstrap Flow-divino</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/trs_pseudo.css">
+</head>
+<body>
+
+	<h1>Velos</h1>
+	<h3>Hacen uso del pseudo Elemento :After</h3>
+	<main>
+		<div class="contenedor">
+			<div class="velo">Velo</div>
+			<div class="velo rtl">RTL</div>
+			<div class="velo ttb">TTB</div>
+			<div class="velo btt">BTT</div>
+		</div>
+
+		<h2>Velo por debajo del contenido</h2>
+		<div class="contenedor">
+			<div class="velo z-1">Velo</div>
+			<div class="velo rtl z-1">RTL</div>
+			<div class="velo ttb z-1">TTB</div>
+			<div class="velo btt z-1">BTT</div>
+		</div>
+
+		<h2>Velo con Opacidad</h2>
+		<div class="contenedor">
+			<div class="velo opacity">LTR</div>
+			<div class="velo rtl opacity">RTL</div>
+			<div class="velo ttb opacity">TTB</div>
+			<div class="velo btt opacity">BTT</div>
+		</div>
+
+		<h2>Velo con Opacidad Revertida</h2>
+		<div class="contenedor">
+			<div class="velo opacity op-r">LTR</div>
+			<div class="velo rtl opacity op-r">RTL</div>
+			<div class="velo ttb opacity op-r">TTB</div>
+			<div class="velo btt opacity op-r">BTT</div>
+		</div>
+
+		<h2>Velo con Origin</h2>
+		<div class="contenedor">
+			<div class="velo origin">LTR</div>
+			<div class="velo rtl origin">RTL</div>
+			<div class="velo ttb origin">TTB</div>
+			<div class="velo btt origin">BTT</div>
+		</div>
+
+		<h2>Velo con Fancy</h2>
+		<div class="contenedor">
+			<div class="velo fancy">LTR</div>
+			<div class="velo rtl fancy">RTL</div>
+			<div class="velo ttb fancy">TTB</div>
+			<div class="velo btt fancy">BTT</div>
+		</div>
+
+		<h1>Mezclando Velos efectos</h1>
+		<p>A cualquier velo se le pueden aplciar todos los filtros</p>
+		<p>Se pueden mezclar y crear tu propio boton personalizado</p>
+		<hr><br><br>
+
+		<h2>Velo con Fancy y opacity</h2>
+		<div class="contenedor">
+			<div class="velo opacity fancy">LTR</div>
+			<div class="velo rtl opacity fancy">RTL</div>
+			<div class="velo ttb opacity fancy">TTB</div>
+			<div class="velo btt opacity fancy">BTT</div>
+		</div>
+
+		<h2>Velo con z-1 y opacity</h2>
+		<div class="contenedor">
+			<div class="velo opacity z-1">LTR</div>
+			<div class="velo rtl opacity z-1">RTL</div>
+			<div class="velo ttb opacity z-1">TTB</div>
+			<div class="velo btt opacity z-1">BTT</div>
+		</div>
+
+		<h2>Velo con Fancy y z-1</h2>
+		<div class="contenedor">
+			<div class="velo z-1 fancy">LTR</div>
+			<div class="velo rtl z-1 fancy">RTL</div>
+			<div class="velo ttb z-1 fancy">TTB</div>
+			<div class="velo btt z-1 fancy">BTT</div>
+		</div>
+
+		<h2>Velo con origin y z-1</h2>
+		<div class="contenedor">
+			<div class="velo z-1 origin">LTR</div>
+			<div class="velo rtl z-1 origin">RTL</div>
+			<div class="velo ttb z-1 origin">TTB</div>
+			<div class="velo btt z-1 origin">BTT</div>
+		</div>
+
+		<h2>Velo de 3 filtros con (origin opacity y z-1)</h2>
+		<div class="contenedor">
+			<div class="velo z-1 origin opacity">LTR</div>
+			<div class="velo rtl z-1 origin opacity">RTL</div>
+			<div class="velo ttb z-1 origin opacity">TTB</div>
+			<div class="velo btt z-1 origin opacity">BTT</div>
+		</div>
+	</main>
+
+	<h1>Velos Dobles</h1>
+	<h3>Hacen uso de :After y :Before</h3>
+	<main>
+		<h2>Velos dobles con Z-1</h2>
+		<div class="contenedor">
+			<div class="velo doble">V-2</div>
+			<div class="velo doble-vertical">V-2 Vertical</div>
+			<div class="velo doble z-1">V-2 Z-1</div>
+			<div class="velo doble-vertical z-1">V-2 Vertical Z-1</div>
+		</div>
+
+		<h2>Velos dobles con opacity y  Z-1</h2>
+		<div class="contenedor">
+			<div class="velo doble opacity">V-2</div>
+			<div class="velo doble-vertical opacity">V-2 Vertical</div>
+			<div class="velo doble z-1 opacity">V-2 Z-1</div>
+			<div class="velo doble-vertical z-1 opacity">V-2 Vertical Z-1</div>
+		</div>
+
+		<h2>Velos dobles con opacity-reverse y  Z-1</h2>
+		<div class="contenedor">
+			<div class="velo doble opacity op-r">V-2</div>
+			<div class="velo doble-vertical opacity op-r">V-2 Vertical</div>
+			<div class="velo doble z-1 opacity op-r">V-2 Z-1</div>
+			<div class="velo doble-vertical z-1 opacity op-r">V-2 Vertical Z-1</div>
+		</div>
+
+		<h2>Velos dobles con opacity y fancy</h2>
+		<div class="contenedor">
+			<div class="velo doble opacity fancy">V-2 fancy</div>
+			<div class="velo doble-vertical opacity fancy">V-2 Vertical fancy</div>
+			<div class="velo doble opacity fancy">V-2 fancy</div>
+			<div class="velo doble-vertical opacity fancy">V-2 Vertical fancy</div>
+		</div>
+	</main>
+
+	<h1>Velos de borde</h1>
+	<h3>Hacen uso del pseudo Elemento :After</h3>
+	<main>
+		<h2>Borde Normal</h2>
+		<div class="contenedor">
+			<div class="borde">Velo</div>
+			<div class="borde rtl">RTL</div>
+			<div class="borde top ">TOP</div>
+			<div class="borde top">TOP</div>
+		</div>
+
+		<h2>Borde con Opacidad</h2>
+		<div class="contenedor">
+			<div class="borde opacity">LTR</div>
+			<div class="borde rtl opacity">RTL</div>
+			<div class="borde top opacity">TOP</div>
+			<div class="borde top opacity">TOP</div>
+		</div>
+
+		<h2>Borde con Opacidad Revertida</h2>
+		<div class="contenedor">
+			<div class="borde opacity op-r">LTR</div>
+			<div class="borde rtl opacity op-r">RTL</div>
+			<div class="borde top opacity op-r">TOP</div>
+			<div class="borde top opacity op-r">TOP</div>
+		</div>
+
+		<h2>Borde con Origin</h2>
+		<div class="contenedor">
+			<div class="borde origin">LTR</div>
+			<div class="borde rtl origin">RTL</div>
+			<div class="borde top origin">TOP</div>
+			<div class="borde top origin">TOP</div>
+		</div>
+
+		<h2>Borde con Fancy</h2>
+		<div class="contenedor">
+			<div class="borde fancy">LTR</div>
+			<div class="borde rtl fancy">RTL</div>
+			<div class="borde top fancy">TOP</div>
+			<div class="borde top fancy">TOP</div>
+		</div>
+
+		<h1>Mezclando efectos</h1>
+		<p>A cualquier Borde se le pueden aplciar todos los filtros</p>
+		<p>Se pueden mezclar y crear tu propio boton personalizado</p>
+		<hr><br><br>
+
+		<h2>Borde con Fancy y opacity</h2>
+		<div class="contenedor">
+			<div class="borde opacity fancy">LTR</div>
+			<div class="borde rtl opacity fancy">RTL</div>
+			<div class="borde top opacity fancy">TOP</div>
+			<div class="borde top opacity fancy">TOP</div>
+		</div>
+
+		<h2>Borde central y opacity</h2>
+		<div class="contenedor">
+			<div class="borde central">bot</div>
+			<div class="borde central opacity">bot opacity</div>
+			<div class="borde central top">top</div>
+			<div class="borde central top opacity">top opacity</div>
+		</div>
+
+		<h2>Borde central y opacity reverse</h2>
+		<div class="contenedor">
+			<div class="borde central opacity op-r">bot opacity reverse</div>
+			<div class="borde central top opacity op-r">top opacity reverse</div>
+		</div>
+
+		<h2>Doble Borde y origin</h2>
+		<div class="contenedor">
+			<div class="borde doble">LTR</div>
+			<div class="borde doble rtl ">RTL</div>
+			<div class="borde doble origin">LTR origin</div>
+			<div class="borde doble rtl origin">RTL origin</div>
+		</div>
+
+		<h2>Doble Borde central</h2>
+		<div class="contenedor">
+			<div class="borde doble central">Central</div>
+			<div class="borde doble central opacity">C Opacity</div>
+			<div class="borde doble central opacity op-r">C opacity reverse</div>
+			<div class="borde doble central outline">con outline</div>
+		</div>
+
+		<h2>Borde completo</h2>
+		<div class="contenedor">
+			<div class="all_borde">all</div>
+			<div class="all_borde opacity">all Opacity</div>
+			<div class="all_borde opacity op-r">all opacity reverse</div>
+			<div class="all_borde fancy">all fancy</div>
+		</div>
+
+		<h2>Borde completo en otra posicion eje X </h2>
+		<div class="contenedor">
+			<div class="all_borde inset_x">all</div>
+			<div class="all_borde inset_x opacity">all Opacity</div>
+			<div class="all_borde inset_x opacity op-r">all opacity reverse</div>
+			<div class="all_borde inset_x fancy">all fancy</div>
+		</div>
+
+		<h2>Borde completo en otra posicion eje Y</h2>
+		<div class="contenedor">
+			<div class="all_borde inset_y">all</div>
+			<div class="all_borde inset_y opacity">all Opacity</div>
+			<div class="all_borde inset_y opacity op-r">all opacity reverse</div>
+			<div class="all_borde inset_y fancy">all fancy</div>
+		</div>
+
+		<h2>Borde completo en otra posicion eje XY</h2>
+		<div class="contenedor">
+			<div class="all_borde inset">all</div>
+			<div class="all_borde inset opacity">all Opacity</div>
+			<div class="all_borde inset opacity op-r">all opacity reverse</div>
+			<div class="all_borde inset fancy">all fancy</div>
+		</div>
+	</main>
+
+	<h1>Borde triangulo</h1>
+	<h3>Hacen uso del pseudo Elemento :Before</h3>
+	<main>
+		<h2>Triangulo normal</h2>
+		<div class="contenedor">
+			<div class="triangulo left">Left</div>
+			<div class="triangulo top">Top</div>
+			<div class="triangulo right">Right</div>
+			<div class="triangulo bot">Bot</div>
+		</div>
+
+		<h2>Triangulo combinado con velo</h2>
+		<div class="contenedor">
+			<div class="triangulo left velo">Left</div>
+			<div class="triangulo top velo ttb">Top</div>
+			<div class="triangulo right velo rtl">Right</div>
+			<div class="triangulo bot velo btt">Bot</div>
+		</div>
+
+		<h2>Triangulo combinado con velo z-1</h2>
+		<div class="contenedor">
+			<div class="triangulo left velo z-1">Left</div>
+			<div class="triangulo top velo ttb z-1">Top</div>
+			<div class="triangulo right velo rtl z-1">Right</div>
+			<div class="triangulo bot velo btt z-1">Bot</div>
+		</div>
+
+		<h2>Triangulo y Velo MIX</h2>
+		<div class="contenedor">
+			<div class="triangulo left velo z-1 origin">Origin</div>
+			<div class="triangulo top velo ttb z-1 fancy">Fancy</div>
+			<div class="triangulo right velo rtl z-1 opacity">opacity</div>
+			<div class="triangulo bot velo btt z-1 opacity op-r">opacity reverse</div>
+		</div>
+	</main>
+
+	<h1>Outline</h1>
+	<h3>Hacen uso de la propiedad outline; no afgecta a los bordes y a la anchura ni altura del elemento, se pueden combinar con cualquier velo y borde</h3>
+	<main>
+		<div class="contenedor">
+			<div class="outline">Outline</div>
+			<div class="outline dashed">Outline dashed</div>
+			<div class="outline inset">Outline inset</div>
+			<div class="outline double">Outline double</div>
+		</div>
+	</main>
+
+	<h1>Sombras dobles</h1>
+	<h3>Hacen uso de :after :before Cuidado porque si el boton es redondo las sombras siempre son rectangulares, mira la variable border radius.</h3>
+	<main>
+		<div class="contenedor sombras">
+			<div class="sombra">Sombra1</div>
+			<div class="sombra s2">Sombra2</div>
+			<div class="sombra inv_hover">Sombra 1 hover1</div>
+			<div class="sombra s2 inv_hover">Sombra 2 hover1</div>
+		</div>
+
+		<div class="contenedor sombras">
+			<div class="sombra alreves_hover">Sombra1 invertidas_hover</div>
+			<div class="sombra s2 alreves_hover">Sombra2 invertidas_hover</div>
+
+			<div class="sombra alreves_hover hidden">Sombra1 escondida</div>
+			<div class="sombra inv_hover hidden">Sombra2 escondida</div>
+		</div>
+
+	</main>
+
+
+</body>
+</html>
