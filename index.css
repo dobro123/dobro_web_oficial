@@ -18,6 +18,14 @@
 	/* font-family: 'Rosario', sans-serif; NO */
 	/* font-family: 'Varta', sans-serif; */
 }
+@font-face {
+  font-family: raleway-normal;
+  src: url(fonts/Raleway-Regular.ttf);
+}
+@font-face {
+  font-family: raleway-bold;
+  src: url(fonts/Raleway-Bold.ttf);
+}
 *:after, *:before {
 	position: absolute;
 	content: '';
@@ -332,10 +340,14 @@ section#texto_info  h2 {
 }
 .contenedor_texto > p {
 	text-align: justify;
+	font-family: raleway-normal, sans-serif;
 	font-size: 24px;
 	line-height: 32px;
 	margin: 24px 0;
 	padding: 0 24px;
+}
+p {
+	font-family: raleway-normal, sans-serif;
 }
 .contenedor_texto>p>span {
 	position: relative;
