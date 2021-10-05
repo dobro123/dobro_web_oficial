@@ -1,20 +1,13 @@
 /* modo oscuro */
 function modo_oscuro() {
-	let css_link = document.createElement('link');
-	css_link.rel="stylesheet";
-	css_link.type="text/css";
-	css_link.id="modo_luz";
-	let cabeza = document.querySelector('head');
-	let css_acutal = document.getElementById('modo_luz');
 	let input_modo_oscuro = document.getElementById('check_modo_oscuro');
 	if(input_modo_oscuro.checked) {
-		modo_luz.remove();
-		css_link.href="css/modo_oscuro.css";
+	 	document.querySelector("html").style.setProperty('--color_negro', '#ffffff');
+		document.querySelector("html").style.setProperty('--color_blanco', '#000000');
 	}else {
-		modo_luz.remove();
-		css_link.href="css/modo_ligth.css";
+	 	document.querySelector("html").style.setProperty('--color_negro', '#000000');
+		document.querySelector("html").style.setProperty('--color_blanco', '#ffffff');
 	}
-	cabeza.appendChild(css_link);
 }
 
 /* Scroll Movil */
