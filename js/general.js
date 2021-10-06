@@ -234,22 +234,22 @@ function scroll_movil() {
 	
 	for(let i=0; i< 4; i++) {
 		navMovilEnlaces[i].style.background="#ffffff00";
-		navMovilEnlaces[i].style.transition=".5s ease";
 	}
-
-	console.log(proyectos.getBoundingClientRect().bottom);
 
 	if(informacion.getBoundingClientRect().top > -1200) {
 		navMovilEnlaces[0].style.background="#ffffffDD";
 	}
 	if(tecnologias.getBoundingClientRect().top < 300 && tecnologias.getBoundingClientRect().top > -4000) {
 		navMovilEnlaces[1].style.background="#ffffffDD";
+		navMovilEnlaces[0].style.background="#ffffff00";
 	}
-	if(proyectos.getBoundingClientRect().top < 200 && proyectos.getBoundingClientRect().bottom > 320) {
+	if(proyectos.getBoundingClientRect().top < 300 && proyectos.getBoundingClientRect().bottom > 380) {
 		navMovilEnlaces[2].style.background="#ffffffDD";
+		navMovilEnlaces[1].style.background="#ffffff00";
 	}
-	if(contacto.getBoundingClientRect().top < 380 && contacto.getBoundingClientRect().top > 0) {
+	if(contacto.getBoundingClientRect().top < 380 && contacto.getBoundingClientRect().bottom > 0) {
 		navMovilEnlaces[3].style.background="#ffffffDD";
+		navMovilEnlaces[2].style.background="#ffffff00";
 	}
 }
 
