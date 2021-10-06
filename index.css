@@ -20,10 +20,12 @@
 }
 @font-face {
   font-family: raleway-normal;
+  font-display: fallback;
   src: url(fonts/Raleway-Regular.ttf);
 }
 @font-face {
   font-family: raleway-bold;
+  font-display: fallback;
   src: url(fonts/Raleway-Bold.ttf);
 }
 *:after, *:before {
