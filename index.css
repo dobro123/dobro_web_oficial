@@ -595,7 +595,7 @@ div.tarjeta_tecnologias_progreso > div#js-box svg circle {
 	animation: stroke_js 2s steps(500) forwards;
 }
 @keyframes stroke_global {
-	100img/php% {
+	100% {
 		stroke-dashoffset: 100;
 	}
 	0% {
