@@ -18,10 +18,12 @@
 @font-face {
   font-family: raleway-normal;
   src: url(fonts/Raleway-Regular.ttf);
+  font-display: fallback;
 }
 @font-face {
   font-family: raleway-bold;
   src: url(fonts/Raleway-Bold.ttf);
+  font-display: fallback;
 }
 *:after, *:before {
 	position: absolute;
