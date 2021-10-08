@@ -1,0 +1,610 @@
+:root {
+	--color_principal: #aa3a39;
+	--color_secundario: #e6d5c3;
+	--color_fondo: #f2f2f2;
+	--color_friday: #f85256;
+	--color_compra: #00b4bf;
+	--topventas_color: #f4cb00;
+	--boton: #f02d01;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+	font-family: sans-serif;
+}
+body {
+	background-color: var(--color_fondo);
+}
+div#publicidad {
+	background: var(--color_principal);
+	color: white;
+	text-align: center;
+	padding: 15px;
+}
+span[onclick] {
+	color: red;
+	float: right;
+	margin-right: 20px;
+	cursor: pointer;
+}
+/* Iframe de youtube posionarlo xD */
+div#video1 {
+	display: none;
+	position: fixed;
+	z-index: 3;
+	background: #000000b0;
+	left: 10%;
+	width: 80%;
+	height: 400px;
+	top: 100px;
+	text-align: center;
+	color: white;
+	outline: 2px solid black;
+}
+span#cerrar_video {
+	background-color: var(--color_principal);
+	color: white;
+	display: none;
+	font-weight: bold;
+	font-size: 24px;
+	position: fixed;
+	top: 100px;
+	left: 91%;
+	padding: 20px 26px;
+	border-radius: 50%;
+	z-index: 10;
+}
+/* Fin IFRAME */
+
+/* Navegador y sus contenidos*/
+nav {
+	width: 100%;
+	height: 50px;
+	padding: 0;
+	background-color: black;
+	color: white;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	position: sticky;
+	top: 0;
+	z-index: 3;
+	overflow: hidden;
+}
+nav > *, nav>a>img {
+	height: 50px;
+}
+nav > a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	padding: 0 30px;
+	color: white;
+	position: relative;
+	font-size: 16px;
+	font-weight: bold;
+	transition: 0.4s ease-in;
+}
+nav>a:hover {
+	background-color: var(--color_fondo);
+	color: red;
+}
+nav div#hamburguesa {
+	height: 50px;
+	width: 50px;
+	position: relative;
+	padding: 4px;
+	border-radius: 4px;
+	display: none;
+}
+div#hamburguesa > span {
+	background:white;
+	height: 4px;
+	width: 80%;
+	position: absolute;
+	left: 5px;
+	top: 8px;
+	border-radius: 2px;
+}
+div#hamburguesa span.s2 {
+	top: 22px;
+}
+div#hamburguesa span.s3 {
+	top: 36px;
+}
+nav div#hamburguesa > input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	z-index: 3;
+}
+nav>form {
+	display: flex;
+	align-items: center;
+	margin-left: 22px;
+}
+nav>form>input, nav>form>button {
+	padding: 4px 6px;
+	background-color: transparent;
+	border: 1px solid lightgrey;
+	color: white;
+}
+nav>a>img {
+	margin: 0;
+	padding: 0;
+	height: 40px;
+}
+nav>a.carrito {
+	background: black;
+}
+/* Cabecera */
+header {
+	width: 100%;
+	height: 500px;
+	background-image: url(img/portada.webp);
+	background-size: cover;
+	background-position: center;
+	position: relative;
+}
+header > div.contenido_cabecera {
+	position: absolute;
+	top: 50%;
+	left: 10vw;
+	transform: translateY(-50%);
+	padding: 1rem;
+}
+header > div.contenido_cabecera > h1 {
+	max-width: 50%;
+	font-size: clamp(1rem, 6vw, 3.5rem);
+	font-weight: normal;
+}
+header > div.contenido_cabecera * {
+	color: white;
+}
+header > div.contenido_cabecera > p {
+	max-width: 60%;
+	font-size: clamp(0.8rem, 6vw, 1rem);
+}
+header > div.contenido_cabecera > div.enlaces {
+	margin-top: 1rem;
+}
+header > div.contenido_cabecera  a {
+	display: block;
+	float: left;
+	margin-right: 1rem;
+	padding: 1rem 1.5rem;
+	transition: 0.4s ease;
+	font-size: clamp(0.8rem, 6vw, 1rem);
+}
+header > div.contenido_cabecera  a.ver_cursos {
+	background: var(--color_principal);
+}
+header > div.contenido_cabecera  a.crear_cuenta {
+	background: white;
+	color: var(--color_principal);
+}
+header > div.contenido_cabecera a:hover {
+	filter: brightness(0.7);
+}
+div#menu {
+	background: black;
+	color: white;
+	text-align: left;
+	width: 400px;
+	height: 100%;
+	position: absolute;
+	display: none;
+	z-index: 10;
+}
+#menu>a {
+	width: 90%;
+	display: block;
+	color: white;
+	font-size: 30px;
+	margin: 20px 0px;
+	transition: 0.25s ease-in;
+}
+#menu>a:hover {
+	transition: 0.25s ease-in;
+	color: var(--color_principal);
+} 
+
+#esconder_menu {
+	font-size: 30px;
+	position: absolute;
+	top: 20px;
+	right: 10px;
+}
+#crear_cuenta {
+	width: 90%;
+	background: var(--color_principal);
+	color: white;
+	text-align: center;
+	display: block;
+	border: none;
+	border-radius: 4px;
+	padding: 10px;
+}
+#entrar {
+	width: 90%;
+	border: 1px solid lightgrey;
+	border-radius: 4px;
+	padding: 10px;
+	margin-top: 10px;
+	background-color: transparent;
+	color: white;
+}
+/* El cuerpo con sus 3 secciones */
+main {
+	background-color: var(--color_fondo);
+	width: calc(100% - 32px);
+	max-width: 1600px;
+	height: auto;
+	margin: 0 auto;
+}
+
+
+/* Main seccion de videos  y cursos*/
+main>h2, main>p {
+	width: 90%;
+	padding: 0;
+	margin: 4px auto;
+}
+main>p {
+	color: grey;
+}
+div#contenedor_videos {
+	width: 100%; 
+	margin: 50px auto;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: flex-start;
+}
+div.videos_cursos {
+	background-color: white;
+	width: 364px;
+	margin: 8px;
+	position: relative;
+}
+div.videos_cursos img {
+	width: 364px;
+}
+div.videos_cursos img.svg {
+	width: 15%;
+	padding: 15px;
+	border-radius: 50%;
+	position: absolute;
+	background-color: rgba(120, 120, 120, 0.7);
+	left: 42.5%;
+	top: 80px;
+	cursor: pointer;
+}
+div.contenido_videos {
+	padding: 15px;
+}
+.contenido_videos > div {
+	border-radius: 4px;
+}
+h3 {
+	font-size: 22px;
+}
+span.top {
+	background-color: var(--topventas_color);
+	color: black;
+	font-size: 14px;
+	padding: 4px;
+	margin-right: 5px;
+}
+p {
+	margin-top: 15px;
+	margin-bottom: 5px; 
+}
+span.descripcion {
+	color: grey;
+}
+div.black_friday {
+	background-color: var(--color_friday);
+	color: white;
+	font-size: 12px;
+	width: 100px;
+	padding: 4px;
+	margin-top: 40px; /* Puede que lo oquite este margen para rellenar con mas informacion */
+	border: 1px solid #ce6663;
+	cursor: pointer;
+}
+div.descuento {
+	color: var(--color_friday);
+	padding: 2px;
+	font-size: 14px;
+}
+div.descuento>span {
+	text-decoration: line-through;
+}
+div.carrito {
+	background-color: var(--color_compra);
+	color: white;
+	text-align: center;
+	padding: 5px;
+	width: 100px;
+	font-size: 18px;
+	cursor: grab;
+}
+div.carrito:active {
+	cursor: grabbing;
+}
+div.carrito > img {
+	width: 16px;
+}
+a#mascursos {
+	display: block;
+	background-color: var(--boton);
+	color: white;
+	font-weight: bold;
+	width: 320px;
+	padding: 15px;
+	margin: 40px auto;
+	text-align: center;
+	transition: 0.3s ease-in;
+}
+/* Apartado Así son los cursos de DOmestika */
+div.informacion {
+	background-color: white;
+	width: 100%;
+	padding: 5%;
+	display: flex;
+	flex-flow: row wrap;
+}
+div.informacion img {
+	width: 64px;
+	float: left;
+	margin-right: 30px;
+}
+.columna_principal {
+	width: 48%;
+}
+.columna_principal:nth-child(odd) {
+	margin-right: 3.9%;
+}
+.fila {
+	padding: 15px 10px;
+}
+.fila a {
+	color: black;
+	text-decoration: underline;
+}
+span.pro {
+	background-color: red;
+	color: white;
+	font-size: 10px;
+	padding: 3px;
+	border-radius: 3px;
+}
+
+/* Apartado mi comunidad */
+div.comunidad {
+	background-color: var(--color_fondo);
+	width: 100%;
+	max-width: 1600px;
+	margin: 0 auto; 
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+.profesores {
+	background-color: var(--color_fondo);
+	width: 90%;
+	margin: 0 auto; 
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+.profesores>img {
+	margin: 20px 20px;
+	transition: 0.3s linear;
+}
+
+/* Footer y sus secciones */
+footer {
+	background-color: var(--color_fondo);
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+h2 {
+	margin: 30px 0;
+	padding-left: 5%; 
+}
+footer >section {
+	display: inline-block;
+}
+.categoria, .areas, .software, .listas {
+	padding: 10px;
+}
+section>p {
+	margin-bottom: 15px;
+}
+section>a {
+	color: black;
+	font-size: 12px;
+	line-height: 16px;
+	display: block;
+}
+input[type="submit"] {
+	background-color: var(--color_principal);
+	color: white;
+	padding: 10px;
+	font-size: 14px;
+	border: none;
+}
+input[type="email"] {
+	width: 200px;
+	height: 38px;
+	padding: 8px;
+}
+
+
+/* Segunda parte del footer */
+.footer2 {
+	background-color: #ededed;
+	color: grey;
+	width: 100%;
+	padding: 5%;
+	display: flex;
+	flex-flow: row wrap;
+}
+.secciones, .informacion, .idoma, .conecta {
+	width: 20%;
+}
+.politicas {
+	margin: 40px 0;
+}
+.ayuda {
+	color: var(--color_principal);
+}
+.idioma {
+	width: 60px;
+	padding: 5px;
+	border:1px solid grey;
+	transition: 0.5s ease;
+}
+.conecta img {
+	background-color: grey;
+	width: 50px;
+	padding: 8px;
+	border-radius: 50%;
+	transition: 0.5s ease;
+	cursor: pointer;
+}
+.conecta img:hover {
+	background-color: var(--color_principal);
+}
+.politicas a {
+	display: inline-block;
+}
+
+/* Hover y efectos */
+
+#mascursos:hover {
+	transition: 0.3s ease-in;
+	background-color: var(--color_compra);
+}
+.fila:hover {
+	background-color: var(--color_fondo);
+	cursor: pointer;
+}
+
+.profesores>img:hover {
+	transition: 0.3s linear;
+	transform: scale(1.1);
+	filter: brightness(80%);
+	cursor: pointer;
+}
+
+footer a:hover {
+	color: darkblue;
+	text-decoration: underline;
+}
+.idioma:hover {
+	transition: 0.2s ease;
+	background-color: grey;
+	color: white;
+	text-decoration: none;
+}
+.politica:hover {
+	color: red;
+}
+
+@media screen and (max-width: 1024px) {
+	.user_cuenta, .carrito {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 720px) {
+	header {
+		background-position: calc(-800px + 10vw);
+	}
+	header > div.contenido_cabecera {
+		top: auto;
+		bottom: 0;
+		left: auto;
+		background: black;
+		transform: translateY(0);
+		display: flex;
+		flex-flow: row wrap;
+	}
+	header > div.contenido_cabecera > h1,
+	header > div.contenido_cabecera > p,
+	header > div.contenido_cabecera > .enlaces > a,
+	header > div.contenido_cabecera > .enlaces {
+		width: 100%;
+		max-width: 100%;
+		text-align: center;
+	}
+	header a.crear_cuenta {
+		margin-top: 0.5rem;
+	}
+	nav > a {
+		display: none;
+	}
+	div#menu {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		display: none;
+		flex-flow: column wrap;
+		justify-content: center;
+		align-items: center;
+	}
+	nav div#hamburguesa {
+		display: block;
+	}
+	div#menu > a {
+		width: 100%;
+		text-align: center;
+		padding: 8px 0;
+		margin: 0;
+	}
+	div#menu > a:hover {
+		background: #ffffff80;
+		color: black;
+	}
+	div#menu button{
+		transition: 0.4s ease-in;
+		margin-top: 8px;
+	}
+	div#menu button:hover {
+		cursor: pointer;
+		background: #ffffff80;
+		color: black;
+	}
+	div.informacion {
+		display: flex;
+		flex-flow: column wrap;
+	}
+	div.informacion > * {
+		width: 100%;
+	}
+	div#contenedor_videos {
+		padding: auto 8px;
+		width: 100%!important;
+	}
+	div > div.videos_cursos {
+		width: 320px;
+	}
+	div > div.videos_cursos > * {
+		max-width: 320px;
+	}
+}
