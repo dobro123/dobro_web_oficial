@@ -12,7 +12,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	scroll-behavior: smooth;
-        transition: .5s ease;
+ 
 	font-family: 'raleway-bold', sans-serif;
 }
 @font-face {
