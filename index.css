@@ -12,7 +12,6 @@
 	padding: 0;
 	box-sizing: border-box;
 	scroll-behavior: smooth;
- 
 	font-family: 'raleway-bold', sans-serif;
 }
 @font-face {
@@ -33,6 +32,8 @@ a {
 	text-decoration: none;
 	color: var(--color_negro);
 }
+img {
+        transition: 0.5s ease;
 li {
 	list-style: inside;
 	list-style-image: url('img/mini-flecha.svg');
@@ -59,11 +60,6 @@ html::-webkit-scrollbar-thumb {
 html::-webkit-scrollbar-thumb:hover {
 	background-color: var(--color_azul4);
 }
-/*@media (min-width: 1600px) and (max-width: 1920px) {
-	body {
-		background-size: 100%;
-	}
-}*/
 /* Swich modo oscuro  */
 div.modo_oscuro {
 	width: 60px;
@@ -1314,6 +1310,7 @@ form input, form button#boton_envio {
 	background:var(--color_blanco);
 	color: var(--color_negro);
 	border-bottom: 2px solid transparent;
+
 }
 form input:focus, textarea:focus {
 	background: var(--gris_1);
@@ -1330,6 +1327,7 @@ form button#boton_envio {
 	overflow: hidden;
 	letter-spacing: 4px;
 	border-bottom: 0px solid transparent;
+        transition: 0.5s ease;
 }
 form button#boton_envio:after {
 	content: '';
