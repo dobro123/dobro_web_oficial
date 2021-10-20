@@ -12,7 +12,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	scroll-behavior: smooth;
-	font-family: 'raleway-bold', sans-serif;
+	font-family: 'raleway-normal', sans-serif;
 }
 @font-face {
   font-family: raleway-normal;
@@ -34,6 +34,7 @@ a {
 }
 img {
         transition: 0.5s ease;
+}
 li {
 	list-style: inside;
 	list-style-image: url('img/mini-flecha.svg');
